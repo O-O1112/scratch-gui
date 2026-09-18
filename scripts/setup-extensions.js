@@ -39,6 +39,22 @@ copyDirSync(
     path.join(extensionsVmDir, 'scratch3_ml2scratch'),
     path.join(vmDir, 'src', 'extensions', 'scratch3_ml2scratch')
 );
+copyDirSync(
+    path.join(extensionsVmDir, 'scratch3_console'),
+    path.join(vmDir, 'src', 'extensions', 'scratch3_console')
+);
+copyDirSync(
+    path.join(extensionsVmDir, 'scratch3_custom'),
+    path.join(vmDir, 'src', 'extensions', 'scratch3_custom')
+);
+copyDirSync(
+    path.join(extensionsVmDir, 'scratch3_cursor'),
+    path.join(vmDir, 'src', 'extensions', 'scratch3_cursor')
+);
+copyDirSync(
+    path.join(extensionsVmDir, 'scratch3_storage'),
+    path.join(vmDir, 'src', 'extensions', 'scratch3_storage')
+);
 
 fs.copyFileSync(
     path.join(extensionsVmDir, 'extension-manager.js'),

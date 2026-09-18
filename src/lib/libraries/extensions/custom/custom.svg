@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 372" width="600" height="372">
+  <defs>
+    <linearGradient id="customBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D97706"/>
+      <stop offset="100%" stop-color="#78350F"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="372" rx="16" fill="url(#customBg)"/>
+  <rect x="70" y="70" width="460" height="232" rx="16" fill="#18181B" opacity="0.85" stroke="#F59E0B" stroke-width="2"/>
+  <text x="110" y="160" fill="#FCD34D" font-family="monospace" font-size="44" font-weight="900">{ JavaScript }</text>
+  <text x="110" y="210" fill="#E4E4E7" font-family="monospace" font-size="22">function customAction() {</text>
+  <text x="140" y="245" fill="#34D399" font-family="monospace" font-size="22">  return &quot;Custom Code&quot;;</text>
+  <text x="110" y="280" fill="#E4E4E7" font-family="monospace" font-size="22">}</text>
+</svg>

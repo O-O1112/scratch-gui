@@ -7,6 +7,10 @@
 - **Facemesh2Scratch**（臉部辨識）：即時估算臉部 468 個特徵點位置與多張臉孔。來源：[champierre/facemesh2scratch](https://github.com/champierre/facemesh2scratch)
 - **ML2Scratch**（機器學習辨識）：透過 Web 攝影機訓練與即時圖片/動作分類。來源：[champierre/ml2scratch](https://github.com/champierre/ml2scratch)
 - **音樂 (Music)** 與 **畫筆 (Pen)**：官方經典繪圖與音樂核心積木。
+- **控制台 (Console)**：瀏覽器開發者控制台輸出、除錯日誌（log/warn/error/info）、計時器與計數器。
+- **自訂代碼 (Custom JS)**：支援執行自訂 JavaScript 代碼、表達式求值（Reporter）與全域變數存取。
+- **自訂游標 (Cursor)**：設定舞台滑鼠游標為指針、文字、十字、隱藏或自訂圖片網址。
+- **本地儲存 (Storage)**：基於 `localStorage` 之跨頁面、離線資料持久化存檔。
 - **全域深色模式 (Dark Mode)**：提供舒適護眼的深色主題（包含積木工作區、選單列、舞台周邊與角色資訊欄），支援選單切換與頂端導覽列一鍵切換（☀️/🌙）。
 - **舞台即時 FPS 計數器**：位於控制列右側，即時監控畫面與模型運算幀率。
 

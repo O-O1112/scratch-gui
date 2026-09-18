@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 372" width="600" height="372">
+  <defs>
+    <linearGradient id="consoleBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="372" rx="16" fill="url(#consoleBg)"/>
+  <rect x="50" y="50" width="500" height="272" rx="12" fill="#111827" stroke="#334155" stroke-width="2"/>
+  <circle cx="80" cy="76" r="6" fill="#EF4444"/>
+  <circle cx="102" cy="76" r="6" fill="#F59E0B"/>
+  <circle cx="124" cy="76" r="6" fill="#10B981"/>
+  <line x1="50" y1="102" x2="550" y2="102" stroke="#1F2937" stroke-width="2"/>
+  <text x="80" y="150" fill="#38BDF8" font-family="monospace" font-size="22" font-weight="bold">&gt; console.log(&quot;Scratch 3.0&quot;);</text>
+  <text x="80" y="195" fill="#10B981" font-family="monospace" font-size="20">✓ Project Running: 60 FPS</text>
+  <text x="80" y="240" fill="#FBBF24" font-family="monospace" font-size="20">⚠ Warning: Timer started</text>
+  <text x="80" y="285" fill="#94A3B8" font-family="monospace" font-size="22">&gt; <tspan fill="#38BDF8">_</tspan></text>
+</svg>

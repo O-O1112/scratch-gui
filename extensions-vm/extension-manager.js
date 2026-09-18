@@ -26,7 +26,11 @@ const builtinExtensions = {
     gdxfor: () => require('../extensions/scratch3_gdx_for'),
     handpose2scratch: () => require('../extensions/scratch3_handpose2scratch'),
     facemesh2scratch: () => require('../extensions/scratch3_facemesh2scratch'),
-    ml2scratch: () => require('../extensions/scratch3_ml2scratch')
+    ml2scratch: () => require('../extensions/scratch3_ml2scratch'),
+    console: () => require('../extensions/scratch3_console'),
+    custom: () => require('../extensions/scratch3_custom'),
+    cursor: () => require('../extensions/scratch3_cursor'),
+    storage: () => require('../extensions/scratch3_storage')
 };
 
 /**

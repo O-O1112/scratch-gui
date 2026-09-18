@@ -16,6 +16,18 @@ import facemesh2scratchInsetIconURL from './facemesh2scratch/facemesh2scratch-sm
 import ml2scratchIconURL from './ml2scratch/ml2scratch.png';
 import ml2scratchInsetIconURL from './ml2scratch/ml2scratch-small.png';
 
+import consoleIconURL from './console/console.svg';
+import consoleInsetIconURL from './console/console-small.svg';
+
+import customIconURL from './custom/custom.svg';
+import customInsetIconURL from './custom/custom-small.svg';
+
+import cursorIconURL from './cursor/cursor.svg';
+import cursorInsetIconURL from './cursor/cursor-small.svg';
+
+import storageIconURL from './storage/storage.svg';
+import storageInsetIconURL from './storage/storage-small.svg';
+
 export default [
     {
         name: 'Handpose2Scratch',
@@ -112,5 +124,45 @@ export default [
             />
         ),
         featured: true
+    },
+    {
+        name: '控制台 (Console)',
+        extensionId: 'console',
+        collaborator: 'TurboWarp / -SIPC-',
+        iconURL: consoleIconURL,
+        insetIconURL: consoleInsetIconURL,
+        description: '提供瀏覽器開發者控制台輸出、除錯日誌、計時與計數積木。',
+        featured: true,
+        disabled: false
+    },
+    {
+        name: '自訂代碼 (Custom JS)',
+        extensionId: 'custom',
+        collaborator: 'Community',
+        iconURL: customIconURL,
+        insetIconURL: customInsetIconURL,
+        description: '自訂並執行 JavaScript 代碼、表達式求值與全域變數存取。',
+        featured: true,
+        disabled: false
+    },
+    {
+        name: '自訂游標 (Cursor)',
+        extensionId: 'cursor',
+        collaborator: 'TurboWarp',
+        iconURL: cursorIconURL,
+        insetIconURL: cursorInsetIconURL,
+        description: '設定舞台滑鼠游標樣式、自訂圖片網址游標或隱藏游標。',
+        featured: true,
+        disabled: false
+    },
+    {
+        name: '本地儲存 (Storage)',
+        extensionId: 'storage',
+        collaborator: 'Community',
+        iconURL: storageIconURL,
+        insetIconURL: storageInsetIconURL,
+        description: '使用 localStorage 進行跨頁面、離線記憶之玩家資料持久化存檔。',
+        featured: true,
+        disabled: false
     }
 ];
