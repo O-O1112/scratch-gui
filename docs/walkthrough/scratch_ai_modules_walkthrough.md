@@ -1,53 +1,65 @@
-# Scratch GUI 擴充模組更新與深色模式成果
+# Scratch GUI AI 模組整合、深色模式與 GitHub Pages 上線成果
 
-已完成加入 **全域深色模式 (Dark Mode)**，解決長時間觀看白色背景造成的眼睛疲勞，並支援一鍵即時切換與持久化儲存。
-
----
-
-## 新增深色模式特色
-
-1. **護眼深色外觀**：
-   - 積木工作區 (`scratch-blocks`)：自動切換至 `#121212` 深黑背景與高對比深色積木配色。
-   - 導覽列與選單：改為深灰 `#1c1c1f` 配色與暗色下拉選單。
-   - 程式碼/造型/音效標籤頁：深色分頁外觀與高亮藍色選取指示條。
-   - 舞台與角色資訊欄：深色面板 (`#202024`) 與暗色輸入框。
-   - 擴充功能庫與模態框：全域深色卡片與篩選列。
-2. **雙重切換途徑**：
-   - **快速切換**：導覽列左側設定圖示旁提供 **☀️ / 🌙 一鍵切換按鈕**。
-   - **設定選單**：點擊「設定 (Settings)」->「顏色模式 (Color Mode)」-> 選擇「深色模式 (Dark)」。
-3. **偏好設定記憶**：
-   - 透過 Cookie 自動記錄使用者選擇，重整頁面維持深色狀態。
-   - 支援偵測系統級 `prefers-color-scheme: dark` 自動套用。
+本次任務已全數完成，包含 AI 視覺辨識模組整合、模組庫精簡、全域深色模式、AI 範例專案快速載入器、即時 FPS 幀率監控器，並已成功構建部署至 **GitHub Pages** 正式上線。
 
 ---
 
-## 擴充功能庫保留清單（共 5 款）
+## 🌐 線上體驗連結
 
-1. **Handpose2Scratch**（手部辨識）：即時追蹤手部關節與手勢。
-2. **Facemesh2Scratch**（臉部辨識）：即時追蹤 468 個面部特徵點。
-3. **ML2Scratch**（機器學習辨識）：自訂圖像分類與即時訓練辨識。
-4. **音樂 (Music)**：官方樂器演奏與節奏積木。
-5. **畫筆 (Pen)**：官方角色繪圖與印章積木。
+- **線上直接試用（GitHub Pages）**：[https://o-o1112.github.io/scratch-gui/](https://o-o1112.github.io/scratch-gui/)
+- **GitHub 專案倉庫**：[https://github.com/O-O1112/scratch-gui](https://github.com/O-O1112/scratch-gui)
 
 ---
 
-## 修改項目清單
+## 🚀 核心功能與成果
 
-- [x] 建立深色模式主題圖標：[`src/lib/themes/dark/icon.svg`](file:///C:/Users/liguo/.gemini/antigravity/scratch/scratch-gui/src/lib/themes/dark/icon.svg)
-- [x] 主題註冊啟用：[`src/lib/themes/index.js`](file:///C:/Users/liguo/.gemini/antigravity/scratch/scratch-gui/src/lib/themes/index.js)、[`themePersistance.js`](file:///C:/Users/liguo/.gemini/antigravity/scratch/scratch-gui/src/lib/themes/themePersistance.js)、[`system-preferences-hoc.jsx`](file:///C:/Users/liguo/.gemini/antigravity/scratch/scratch-gui/src/lib/system-preferences-hoc.jsx)
-- [x] 選單啟用深色選項：[`theme-menu.jsx`](file:///C:/Users/liguo/.gemini/antigravity/scratch/scratch-gui/src/components/menu-bar/theme-menu.jsx)
-- [x] 導覽列一鍵切換鈕：[`menu-bar.jsx`](file:///C:/Users/liguo/.gemini/antigravity/scratch/scratch-gui/src/components/menu-bar/menu-bar.jsx)
-- [x] 全域深色樣式表：[`src/css/dark-theme.css`](file:///C:/Users/liguo/.gemini/antigravity/scratch/scratch-gui/src/css/dark-theme.css) 與 [`gui.jsx`](file:///C:/Users/liguo/.gemini/antigravity/scratch/scratch-gui/src/components/gui/gui.jsx) `data-theme` 綁定
-- [x] Webpack 5 重新建置驗證通過（`webpack 5.107.2 compiled successfully`）。
+### 1. 三款 AI 視覺辨識模組整合
+- **Handpose2Scratch**（手部辨識）：利用 MediaPipe / ml5 進行手部 21 節點偵測與手勢辨識。
+- **Facemesh2Scratch**（臉部辨識）：偵測臉部 468 個網格節點與五官特徵。
+- **ML2Scratch**（機器學習影像分類）：支援即時攝影機樣本收集、分類訓練與辨識判定。
+
+### 2. 精簡擴充模組庫
+依據要求移除 9 款未勾選模組，模組選擇庫中僅保留下列 5 款：
+1. `Handpose2Scratch`
+2. `Facemesh2Scratch`
+3. `ML2Scratch`
+4. `Music`（音樂）
+5. `Pen`（畫筆）
+
+### 3. 全域深色模式 (Full Dark Mode)
+- **視覺護眼**：全域覆蓋 `#121212` / `#1c1c1f` 深灰與高對比色調，包含積木區、導覽列、分頁籤、角色清單與彈窗。
+- **一鍵切換**：導覽列設有 ☀️ / 🌙 快速切換按鈕，同時支援「設定」->「顏色模式」切換。
+- **記憶偏好**：透過 Cookie 自動記憶使用者選擇，支援系統 `prefers-color-scheme`。
+
+### 4. 實用小功能強化
+- **AI 範例專案一鍵載入**（頂端導覽列「AI 範例」選單）：
+  - `✋ 手部追蹤範例 (Handpose)`
+  - `🙂 臉部網格範例 (Facemesh)`
+  - `✨ 五官高亮特效 (Highlight)`
+  - `🏓 機器學習桌球對戰 (ML Pong)`
+  - `🔢 數字 1 或 2 分類辨識 (1 or 2)`
+- **舞台即時 FPS 計數器**：
+  - 位於綠旗與停止鍵右側，即時計算繪圖幀率，方便觀察 AI 模型運行效能。
 
 ---
 
-## 啟動與使用方式
+## 📂 變更與檔案結構
 
-```bash
-cd C:\Users\liguo\.gemini\antigravity\scratch\scratch-gui
-npm start
-```
+| 類別 | 檔案路徑 | 說明 |
+| :--- | :--- | :--- |
+| **AI 擴充** | `src/lib/libraries/extensions/` | 註冊 Handpose、Facemesh、ML2Scratch UI 卡片 |
+| **AI 核心** | `extensions-vm/` & `scripts/setup-extensions.js` | 封裝 AI 擴充積木邏輯並於 postinstall 自動注入 VM |
+| **深色樣式** | `src/css/dark-theme.css` | 全域深色覆蓋樣式表 |
+| **導覽與控制** | `src/components/menu-bar/ai-samples-menu.jsx` | AI 範例專案下拉選單 |
+| **FPS 監控** | `src/components/controls/fps-counter.jsx` | 舞台即時幀率顯示組件 |
+| **範例專案** | `static/samples/` | 5 款 `.sb3` 範例專案檔 |
+| **部署** | `build/` -> `gh-pages` 分支 | 靜態頁面已正式部署上線 |
 
-1. 在瀏覽器開啟 `http://localhost:8601/`。
-2. 點擊頂端導覽列上的 **🌙 圖標**，或至「設定」->「顏色模式」選擇「Dark」，即可立刻切換至深色模式。
+---
+
+## 驗證結果
+
+- **本地 Webpack 構建**：`npm run build` 通過，產出完整 `gui.js` 與靜態資源。
+- **GitHub Pages 部署**：
+  - HTTP 狀態碼：`200 OK`
+  - 資源載入：`index.html`、`gui.js`、`static/samples/*.sb3` 皆可正常取得。

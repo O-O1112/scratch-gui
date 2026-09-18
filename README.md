@@ -1,21 +1,29 @@
 # Scratch GUI (整合 AI 機器學習、手部與臉部辨識擴充版)
 
+> 🌐 **線上體驗網址**：[https://o-o1112.github.io/scratch-gui/](https://o-o1112.github.io/scratch-gui/)
+
 本專案已整合以下 AI 擴充模組，並精簡擴充庫僅保留指定核心項目：
 - **Handpose2Scratch**（手部辨識）：即時追蹤手部 21 個關節點座標與手勢狀態。來源：[champierre/handpose2scratch](https://github.com/champierre/handpose2scratch)
 - **Facemesh2Scratch**（臉部辨識）：即時估算臉部 468 個特徵點位置與多張臉孔。來源：[champierre/facemesh2scratch](https://github.com/champierre/facemesh2scratch)
 - **ML2Scratch**（機器學習辨識）：透過 Web 攝影機訓練與即時圖片/動作分類。來源：[champierre/ml2scratch](https://github.com/champierre/ml2scratch)
 - **音樂 (Music)** 與 **畫筆 (Pen)**：官方經典繪圖與音樂核心積木。
 - **全域深色模式 (Dark Mode)**：提供舒適護眼的深色主題（包含積木工作區、選單列、舞台周邊與角色資訊欄），支援選單切換與頂端導覽列一鍵切換（☀️/🌙）。
+- **AI 範例專案載入器**：導覽列設有「AI 範例」選單，一鍵載入 Handpose、Facemesh、ML Pong 等實用專案。
+- **舞台即時 FPS 計數器**：位於控制列右側，即時監控畫面與模型運算幀率。
 
 ## 快速啟動
 
 ```bash
+# 安裝依賴（自動注入擴充模組）
+npm install
+
 # 啟動開發伺服器
 npm start
 # 瀏覽器前往：http://localhost:8601
 
-# 產品建置
+# 產品建置與 GitHub Pages 發布
 npm run build
+npm run deploy
 ```
 
 
