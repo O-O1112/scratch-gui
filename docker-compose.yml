@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  scratch-gui:
+    image: node:20-alpine
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - "8601:8601"
+    environment:
+      - PORT=8601
+      - HOST=0.0.0.0
+      - NODE_ENV=development
+    command: npm start
