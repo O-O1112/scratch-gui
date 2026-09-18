@@ -1,6 +1,6 @@
 # Scratch GUI AI 模組整合、深色模式與 GitHub Pages 上線成果
 
-本次任務已全數完成，包含 AI 視覺辨識模組整合、模組庫精簡、全域深色模式、AI 範例專案快速載入器、即時 FPS 幀率監控器，並已成功構建部署至 **GitHub Pages** 正式上線。
+本次任務已全數完成，包含 AI 視覺辨識模組整合、模組庫精簡、全域深色模式、即時 FPS 幀率監控器，並已依照指示移除 AI 範例選單與範例專案檔，重新編譯構建後成功發布至 **GitHub Pages** 正式上線。
 
 ---
 
@@ -31,15 +31,8 @@
 - **一鍵切換**：導覽列設有 ☀️ / 🌙 快速切換按鈕，同時支援「設定」->「顏色模式」切換。
 - **記憶偏好**：透過 Cookie 自動記憶使用者選擇，支援系統 `prefers-color-scheme`。
 
-### 4. 實用小功能強化
-- **AI 範例專案一鍵載入**（頂端導覽列「AI 範例」選單）：
-  - `✋ 手部追蹤範例 (Handpose)`
-  - `🙂 臉部網格範例 (Facemesh)`
-  - `✨ 五官高亮特效 (Highlight)`
-  - `🏓 機器學習桌球對戰 (ML Pong)`
-  - `🔢 數字 1 或 2 分類辨識 (1 or 2)`
-- **舞台即時 FPS 計數器**：
-  - 位於綠旗與停止鍵右側，即時計算繪圖幀率，方便觀察 AI 模型運行效能。
+### 4. 舞台即時 FPS 計數器
+- 位於綠旗與停止鍵右側，即時計算繪圖幀率，方便觀察 AI 模型運行效能。
 
 ---
 
@@ -50,9 +43,7 @@
 | **AI 擴充** | `src/lib/libraries/extensions/` | 註冊 Handpose、Facemesh、ML2Scratch UI 卡片 |
 | **AI 核心** | `extensions-vm/` & `scripts/setup-extensions.js` | 封裝 AI 擴充積木邏輯並於 postinstall 自動注入 VM |
 | **深色樣式** | `src/css/dark-theme.css` | 全域深色覆蓋樣式表 |
-| **導覽與控制** | `src/components/menu-bar/ai-samples-menu.jsx` | AI 範例專案下拉選單 |
 | **FPS 監控** | `src/components/controls/fps-counter.jsx` | 舞台即時幀率顯示組件 |
-| **範例專案** | `static/samples/` | 5 款 `.sb3` 範例專案檔 |
 | **部署** | `build/` -> `gh-pages` 分支 | 靜態頁面已正式部署上線 |
 
 ---
@@ -62,4 +53,4 @@
 - **本地 Webpack 構建**：`npm run build` 通過，產出完整 `gui.js` 與靜態資源。
 - **GitHub Pages 部署**：
   - HTTP 狀態碼：`200 OK`
-  - 資源載入：`index.html`、`gui.js`、`static/samples/*.sb3` 皆可正常取得。
+  - 資源載入：`index.html`、`gui.js`、`chunks/` 皆正常運作。

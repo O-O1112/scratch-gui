@@ -28,7 +28,6 @@ import DeletionRestorer from '../../containers/deletion-restorer.jsx';
 import TurboMode from '../../containers/turbo-mode.jsx';
 import MenuBarHOC from '../../containers/menu-bar-hoc.jsx';
 import SettingsMenu from './settings-menu.jsx';
-import AiSamplesMenu from './ai-samples-menu.jsx';
 import {setTheme} from '../../reducers/theme';
 import {persistTheme} from '../../lib/themes/themePersistance';
 
@@ -472,7 +471,6 @@ class MenuBar extends React.Component {
                                 </span>
                             </div>
                         )}
-                        <AiSamplesMenu />
                         {(this.props.canManageFiles) && (
                             <div
                                 className={classNames(styles.menuBarItem, styles.hoverable, {

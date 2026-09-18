@@ -8,7 +8,6 @@
 - **ML2Scratch**（機器學習辨識）：透過 Web 攝影機訓練與即時圖片/動作分類。來源：[champierre/ml2scratch](https://github.com/champierre/ml2scratch)
 - **音樂 (Music)** 與 **畫筆 (Pen)**：官方經典繪圖與音樂核心積木。
 - **全域深色模式 (Dark Mode)**：提供舒適護眼的深色主題（包含積木工作區、選單列、舞台周邊與角色資訊欄），支援選單切換與頂端導覽列一鍵切換（☀️/🌙）。
-- **AI 範例專案載入器**：導覽列設有「AI 範例」選單，一鍵載入 Handpose、Facemesh、ML Pong 等實用專案。
 - **舞台即時 FPS 計數器**：位於控制列右側，即時監控畫面與模型運算幀率。
 
 ## 快速啟動
