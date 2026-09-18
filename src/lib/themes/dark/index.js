@@ -1,79 +1,88 @@
 const blockColors = {
     motion: {
-        primary: '#0F1E33',
-        secondary: '#4C4C4C',
-        tertiary: '#4C97FF',
-        quaternary: '#4C97FF'
+        primary: '#4C97FF',
+        secondary: '#4280D7',
+        tertiary: '#3373CC',
+        quaternary: '#3373CC'
     },
     looks: {
-        primary: '#1E1433',
-        secondary: '#4C4C4C',
-        tertiary: '#9966FF',
-        quaternary: '#9966FF'
+        primary: '#9966FF',
+        secondary: '#855CD6',
+        tertiary: '#774DCB',
+        quaternary: '#774DCB'
     },
     sounds: {
-        primary: '#291329',
-        secondary: '#4C4C4C',
-        tertiary: '#CF63CF',
-        quaternary: '#CF63CF'
+        primary: '#CF63CF',
+        secondary: '#C94FC9',
+        tertiary: '#BD42BD',
+        quaternary: '#BD42BD'
     },
     control: {
-        primary: '#332205',
-        secondary: '#4C4C4C',
-        tertiary: '#FFAB19',
-        quaternary: '#FFAB19'
+        primary: '#FFAB19',
+        secondary: '#EC9C13',
+        tertiary: '#CF8B17',
+        quaternary: '#CF8B17'
     },
     event: {
-        primary: '#332600',
-        secondary: '#4C4C4C',
-        tertiary: '#FFBF00',
-        quaternary: '#FFBF00'
+        primary: '#FFBF00',
+        secondary: '#E6AC00',
+        tertiary: '#CC9900',
+        quaternary: '#CC9900'
     },
     sensing: {
-        primary: '#12232A',
-        secondary: '#4C4C4C',
-        tertiary: '#5CB1D6',
-        quaternary: '#5CB1D6'
+        primary: '#5CB1D6',
+        secondary: '#47A8D1',
+        tertiary: '#2E8EB8',
+        quaternary: '#2E8EB8'
     },
     pen: {
-        primary: '#03251C',
-        secondary: '#4C4C4C',
-        tertiary: '#0fBD8C',
-        quaternary: '#0fBD8C'
+        primary: '#0fBD8C',
+        secondary: '#0DA57A',
+        tertiary: '#0B8E69',
+        quaternary: '#0B8E69'
     },
     operators: {
-        primary: '#112611',
-        secondary: '#4C4C4C',
-        tertiary: '#59C059',
-        quaternary: '#59C059'
+        primary: '#59C059',
+        secondary: '#46B946',
+        tertiary: '#389438',
+        quaternary: '#389438'
     },
     data: {
-        primary: '#331C05',
-        secondary: '#4C4C4C',
-        tertiary: '#FF8C1A',
-        quaternary: '#FF8C1A'
+        primary: '#FF8C1A',
+        secondary: '#FF8000',
+        tertiary: '#DB6E00',
+        quaternary: '#DB6E00'
     },
     data_lists: {
-        primary: '#331405',
-        secondary: '#4C4C4C',
-        tertiary: '#FF661A',
-        quaternary: '#FF661A'
+        primary: '#FF661A',
+        secondary: '#FF5500',
+        tertiary: '#E64D00',
+        quaternary: '#E64D00'
     },
     more: {
-        primary: '#331419',
-        secondary: '#4C4C4C',
-        tertiary: '#FF6680',
-        quaternary: '#FF6680'
+        primary: '#FF6680',
+        secondary: '#FF4D6A',
+        tertiary: '#FF3355',
+        quaternary: '#FF3355'
     },
-    text: 'rgba(255, 255, 255, .7)',
-    textFieldText: '#E5E5E5',
-    workspace: '#121212',
-    toolboxSelected: '#4C4C4C',
-    toolboxText: '#E5E5E5',
-    toolbox: '#121212',
-    flyout: '#121212',
-    textField: '#4C4C4C',
-    menuHover: 'rgba(255, 255, 255, 0.3)'
+    text: '#FFFFFF',
+    textFieldText: '#2e2e38',
+    workspace: '#18181c',
+    toolboxHover: '#4C97FF',
+    toolboxSelected: '#2c2c36',
+    toolboxText: '#E0E0E8',
+    toolbox: '#141418',
+    flyout: '#18181c',
+    textField: '#FFFFFF',
+    fieldShadow: 'rgba(0, 0, 0, 0.25)',
+    dropDownShadow: 'rgba(0, 0, 0, 0.4)',
+    numPadBackground: '#24242c',
+    numPadBorder: '#383846',
+    numPadActiveBackground: '#38384c',
+    numPadText: '#FFFFFF',
+    valueReportBackground: '#24242c',
+    valueReportBorder: '#383846',
+    menuHover: 'rgba(255, 255, 255, 0.15)'
 };
 
 const extensions = {};

@@ -1,4 +1,4 @@
-/* Scratch GUI Dark Theme Global Overrides */
+/* Scratch GUI Comprehensive Dark Theme */
 
 :global([data-theme="dark"]) {
     color-scheme: dark;
@@ -6,8 +6,28 @@
 
 :global(html[data-theme="dark"]),
 :global(body[data-theme="dark"]) {
-    background-color: #121212 !important;
-    color: #e0e0e0 !important;
+    background-color: #141418 !important;
+    color: #e0e0e8 !important;
+}
+
+/* Global Scrollbars */
+:global([data-theme="dark"]) ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background-color: #18181c;
+}
+
+:global([data-theme="dark"]) ::-webkit-scrollbar-track {
+    background-color: #18181c;
+}
+
+:global([data-theme="dark"]) ::-webkit-scrollbar-thumb {
+    background-color: #32323a;
+    border-radius: 4px;
+}
+
+:global([data-theme="dark"]) ::-webkit-scrollbar-thumb:hover {
+    background-color: #484854;
 }
 
 /* Base Body & Layout */
@@ -15,119 +35,297 @@
 :global([data-theme="dark"]) :global([class*="gui_editor-wrapper"]),
 :global([data-theme="dark"]) :global([class*="gui_page-wrapper"]),
 :global([data-theme="dark"]) :global([class*="gui_flex-wrapper"]) {
-    background-color: #18181b !important;
+    background-color: #141418 !important;
 }
 
 /* Menu Bar */
 :global([data-theme="dark"]) :global([class*="menu-bar_menu-bar"]) {
-    background-color: #1c1c1f !important;
-    border-bottom: 1px solid #2e2e33 !important;
+    background-color: #1c1c22 !important;
+    border-bottom: 1px solid #2a2a32 !important;
     color: #f0f0f0 !important;
 }
 
 :global([data-theme="dark"]) :global([class*="menu-bar_menu-bar-item"]) {
-    color: #e0e0e0 !important;
+    color: #e0e0e8 !important;
 }
 
+:global([data-theme="dark"]) :global([class*="menu-bar_menu-bar-item"]):hover {
+    background-color: #2c2c36 !important;
+}
+
+:global([data-theme="dark"]) :global([class*="project-title-input_title-field"]) {
+    background-color: #121216 !important;
+    color: #ffffff !important;
+    border: 1px solid #32323e !important;
+}
+
+:global([data-theme="dark"]) :global([class*="project-title-input_title-field"]):hover,
+:global([data-theme="dark"]) :global([class*="project-title-input_title-field"]):focus {
+    background-color: #0a0a0c !important;
+    border-color: #4c97ff !important;
+}
+
+/* Dropdown Menus */
 :global([data-theme="dark"]) :global([class*="menu_menu_"]),
 :global([data-theme="dark"]) :global([class*="menu_menu-section"]) {
-    background-color: #242428 !important;
+    background-color: #22222a !important;
     color: #ffffff !important;
-    border: 1px solid #3a3a40 !important;
+    border: 1px solid #363642 !important;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6) !important;
 }
 
 :global([data-theme="dark"]) :global([class*="menu_menu-item"]):hover,
 :global([data-theme="dark"]) :global([class*="settings-menu_option"]):hover {
-    background-color: #34343a !important;
+    background-color: #32323e !important;
 }
 
 :global([data-theme="dark"]) :global([class*="settings-menu_option"]) {
-    color: #e0e0e0 !important;
+    color: #e0e0e8 !important;
+}
+
+:global([data-theme="dark"]) :global([class*="menu_divider"]) {
+    border-color: #32323e !important;
 }
 
 /* Tabs: Code / Costumes / Sounds */
 :global([data-theme="dark"]) :global([class*="gui_tab-list"]),
 :global([data-theme="dark"]) :global(.react-tabs__tab-list) {
-    background-color: #18181b !important;
+    background-color: #141418 !important;
     border-bottom: none !important;
 }
 
 :global([data-theme="dark"]) :global([class*="gui_tab"]),
 :global([data-theme="dark"]) :global(.react-tabs__tab) {
-    background-color: #242428 !important;
-    color: #9e9ea6 !important;
-    border: 1px solid #333338 !important;
+    background-color: #202026 !important;
+    color: #9c9ca6 !important;
+    border: 1px solid #2e2e38 !important;
     border-bottom: none !important;
 }
 
 :global([data-theme="dark"]) :global([class*="gui_tab"][class*="gui_is-selected"]),
 :global([data-theme="dark"]) :global([class*="gui_tab"][class*="isSelected"]),
 :global([data-theme="dark"]) :global(.react-tabs__tab--selected) {
-    background-color: #121214 !important;
+    background-color: #18181c !important;
     color: #ffffff !important;
     border-top: 3px solid #4c97ff !important;
-    border-left-color: #333338 !important;
-    border-right-color: #333338 !important;
+    border-left-color: #2e2e38 !important;
+    border-right-color: #2e2e38 !important;
     border-bottom: none !important;
 }
 
-/* Stage Area & Stage Header */
+/* Blockly Workspace & Toolbox */
+:global([data-theme="dark"]) .blocklySvg,
+:global([data-theme="dark"]) .blocklyMainBackground {
+    background-color: #18181c !important;
+    fill: #18181c !important;
+}
+
+:global([data-theme="dark"]) .blocklyToolboxDiv,
+:global([data-theme="dark"]) .scratchCategoryMenu {
+    background-color: #141418 !important;
+    color: #d6d6e0 !important;
+    border-right: 1px solid #282830 !important;
+}
+
+:global([data-theme="dark"]) .scratchCategoryMenuItem {
+    color: #b0b0bc !important;
+}
+
+:global([data-theme="dark"]) .scratchCategoryMenuItem.categorySelected {
+    background-color: #282832 !important;
+    color: #ffffff !important;
+}
+
+:global([data-theme="dark"]) .scratchCategoryMenuItemLabel {
+    color: inherit !important;
+}
+
+:global([data-theme="dark"]) .blocklyFlyoutBackground {
+    fill: #18181c !important;
+    fill-opacity: 0.98 !important;
+}
+
+:global([data-theme="dark"]) .blocklyScrollbarHandle {
+    fill: #32323c !important;
+}
+
+:global([data-theme="dark"]) .blocklyZoom > image {
+    filter: invert(1) brightness(0.85);
+}
+
+:global([data-theme="dark"]) :global([class*="gui_extension-button-container"]) {
+    background-color: #141418 !important;
+    border-color: #282830 !important;
+}
+
+:global([data-theme="dark"]) :global([class*="gui_extension-button-container"]):before {
+    background: linear-gradient(rgba(20, 20, 24, 0), rgba(20, 20, 24, 1)) !important;
+}
+
+/* Blockly Context Menus & Dropdowns */
+:global([data-theme="dark"]) .blocklyWidgetDiv .goog-menu,
+:global([data-theme="dark"]) .blocklyContextMenu,
+:global([data-theme="dark"]) .goog-menu {
+    background-color: #22222a !important;
+    border: 1px solid #363644 !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6) !important;
+}
+
+:global([data-theme="dark"]) .goog-menuitem {
+    color: #e0e0e8 !important;
+}
+
+:global([data-theme="dark"]) .goog-menuitem-highlight,
+:global([data-theme="dark"]) .goog-menuitem:hover {
+    background-color: #32323e !important;
+    color: #ffffff !important;
+}
+
+:global([data-theme="dark"]) .goog-menuitem-content {
+    color: #e0e0e8 !important;
+}
+
+:global([data-theme="dark"]) .blocklyDropDownDiv {
+    background-color: #22222a !important;
+    border: 1px solid #363644 !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6) !important;
+}
+
+:global([data-theme="dark"]) .blocklyDropDownDiv .goog-menuitem {
+    color: #e0e0e8 !important;
+}
+
+:global([data-theme="dark"]) .blocklyDropDownDiv .goog-menuitem:hover {
+    background-color: #32323e !important;
+}
+
+/* Stage & Controls */
 :global([data-theme="dark"]) :global([class*="stage-header_stage-header-wrapper"]),
 :global([data-theme="dark"]) :global([class*="stage-header_stage-menu-wrapper"]),
 :global([data-theme="dark"]) :global([class*="stage-wrapper_stage-wrapper"]) {
-    background-color: #18181b !important;
-    color: #e0e0e0 !important;
+    background-color: #141418 !important;
+    color: #e0e0e8 !important;
 }
 
 :global([data-theme="dark"]) :global([class*="stage_stage"]) {
-    border-color: #333338 !important;
+    border-color: #2a2a32 !important;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.4) !important;
+}
+
+:global([data-theme="dark"]) :global([class*="stage-header_stage-button"]) {
+    background-color: #222228 !important;
+    border: 1px solid #32323c !important;
+    color: #ffffff !important;
+}
+
+:global([data-theme="dark"]) :global([class*="stage-header_stage-button"]):hover {
+    background-color: #30303a !important;
+}
+
+/* Stage Monitors (Variables & Lists) */
+:global([data-theme="dark"]) :global([class*="monitor_monitor-container"]) {
+    background-color: #1e1e24 !important;
+    border: 1px solid #363642 !important;
+    color: #ffffff !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+}
+
+:global([data-theme="dark"]) :global([class*="monitor_label"]) {
+    color: #d0d0d8 !important;
+}
+
+:global([data-theme="dark"]) :global([class*="monitor-list_monitor-list"]) {
+    background-color: #1e1e24 !important;
+    border-color: #363642 !important;
+    color: #ffffff !important;
+}
+
+:global([data-theme="dark"]) :global([class*="monitor-list_list-header"]) {
+    background-color: #16161a !important;
+    color: #ffffff !important;
+}
+
+:global([data-theme="dark"]) :global([class*="monitor-list_row"]) {
+    background-color: #26262e !important;
+    border-color: #363642 !important;
+    color: #ffffff !important;
 }
 
 /* Sprite Info (Inputs, Coordinates, Direction) */
 :global([data-theme="dark"]) :global([class*="sprite-info_sprite-info"]) {
-    background-color: #202024 !important;
-    color: #e0e0e0 !important;
-    border-color: #2e2e33 !important;
+    background-color: #1c1c22 !important;
+    color: #e0e0e8 !important;
+    border-color: #2a2a32 !important;
 }
 
 :global([data-theme="dark"]) :global([class*="sprite-info_sprite-info"]) input,
 :global([data-theme="dark"]) :global([class*="input_input-form"]) {
-    background-color: #141416 !important;
+    background-color: #121216 !important;
     color: #ffffff !important;
-    border: 1px solid #3e3e44 !important;
+    border: 1px solid #32323e !important;
 }
 
 :global([data-theme="dark"]) :global([class*="sprite-info_label"]),
 :global([data-theme="dark"]) :global([class*="sprite-info_sprite-info"]) span {
-    color: #a0a0a8 !important;
+    color: #a0a0aa !important;
+}
+
+:global([data-theme="dark"]) :global([class*="sprite-info_icon-wrapper"]) {
+    background-color: #24242c !important;
+    border: 1px solid #363644 !important;
+}
+
+/* Direction Picker Popover */
+:global([data-theme="dark"]) .Popover-body {
+    background-color: #22222a !important;
+    border: 1px solid #383846 !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6) !important;
+    color: #ffffff !important;
+}
+
+:global([data-theme="dark"]) .Popover-tipShape {
+    fill: #22222a !important;
+}
+
+:global([data-theme="dark"]) :global([class*="direction-picker_button-row"]) button {
+    background-color: #2a2a34 !important;
+    border: 1px solid #383846 !important;
+    color: #ffffff !important;
+}
+
+:global([data-theme="dark"]) :global([class*="dial_container"]) {
+    background-color: #22222a !important;
+}
+
+:global([data-theme="dark"]) :global([class*="dial_dial-face"]) circle {
+    fill: #16161a !important;
+    stroke: #383846 !important;
 }
 
 /* Sprite Selector & Target Pane */
 :global([data-theme="dark"]) :global([class*="sprite-selector_sprite-selector"]) {
-    background-color: #18181b !important;
-    border-color: #2e2e33 !important;
+    background-color: #141418 !important;
+    border-color: #2a2a32 !important;
 }
 
 :global([data-theme="dark"]) :global([class*="target-pane_target-pane"]) {
-    background-color: #18181b !important;
+    background-color: #141418 !important;
 }
 
 :global([data-theme="dark"]) :global([class*="sprite-selector-item_sprite-selector-item"]) {
-    background-color: #222226 !important;
-    color: #e0e0e0 !important;
-    border: 2px solid #333338 !important;
+    background-color: #1e1e24 !important;
+    color: #e0e0e8 !important;
+    border: 2px solid #2a2a34 !important;
 }
 
 :global([data-theme="dark"]) :global([class*="sprite-selector-item_sprite-selector-item"]):hover {
-    background-color: #2a2a30 !important;
+    background-color: #282832 !important;
     border-color: #4c97ff !important;
 }
 
 :global([data-theme="dark"]) :global([class*="sprite-selector-item_sprite-selector-item"][class*="is-selected"]),
 :global([data-theme="dark"]) :global([class*="sprite-selector-item_sprite-selector-item"][class*="isSelected"]) {
-    background-color: #2c2c34 !important;
+    background-color: #2a2a36 !important;
     border-color: #4c97ff !important;
     box-shadow: 0 0 0 3px rgba(76, 151, 255, 0.3) !important;
 }
@@ -137,54 +335,254 @@
 }
 
 :global([data-theme="dark"]) :global([class*="sprite-selector-item_sprite-details"]) {
-    color: #a0a0a8 !important;
+    color: #a0a0aa !important;
 }
 
 /* Stage Selector (Backdrop Pane) */
 :global([data-theme="dark"]) :global([class*="stage-selector_stage-selector"]) {
-    background-color: #222226 !important;
-    color: #e0e0e0 !important;
-    border: 1px solid #333338 !important;
+    background-color: #1e1e24 !important;
+    color: #e0e0e8 !important;
+    border: 1px solid #2a2a34 !important;
 }
 
 :global([data-theme="dark"]) :global([class*="stage-selector_header"]) {
-    background-color: #1c1c20 !important;
+    background-color: #16161a !important;
     color: #ffffff !important;
 }
 
 :global([data-theme="dark"]) :global([class*="stage-selector_stage-selector"][class*="is-selected"]),
 :global([data-theme="dark"]) :global([class*="stage-selector_stage-selector"][class*="isSelected"]) {
-    background-color: #2c2c34 !important;
+    background-color: #2a2a36 !important;
     border-color: #4c97ff !important;
     box-shadow: 0 0 0 3px rgba(76, 151, 255, 0.3) !important;
 }
 
-/* Modals & Extension / Sprite Libraries */
+/* Asset Panel (Costume & Sound List on the left) */
+:global([data-theme="dark"]) :global([class*="asset-panel_wrapper"]) {
+    background-color: #141418 !important;
+    border-color: #2a2a32 !important;
+}
+
+:global([data-theme="dark"]) :global([class*="asset-panel_detail-area"]) {
+    border-color: #2a2a32 !important;
+}
+
+:global([data-theme="dark"]) :global([class*="selector_wrapper"]) {
+    background-color: #141418 !important;
+    border-color: #2a2a32 !important;
+}
+
+:global([data-theme="dark"]) :global([class*="selector_new-buttons"]):before {
+    background: linear-gradient(rgba(20, 20, 24, 0), rgba(20, 20, 24, 1)) !important;
+}
+
+:global([data-theme="dark"]) :global([class*="selector_list-item"]) {
+    background-color: #1e1e24 !important;
+    border: 2px solid #2a2a34 !important;
+    color: #e0e0e8 !important;
+}
+
+:global([data-theme="dark"]) :global([class*="selector_list-item"]):hover {
+    border-color: #4c97ff !important;
+    background-color: #282832 !important;
+}
+
+:global([data-theme="dark"]) :global([class*="selector_list-item"][class*="is-selected"]),
+:global([data-theme="dark"]) :global([class*="selector_list-item"][class*="isSelected"]) {
+    border-color: #4c97ff !important;
+    background-color: #2a2a36 !important;
+    box-shadow: 0 0 0 2px rgba(76, 151, 255, 0.3) !important;
+}
+
+/* Paint Editor (Costumes Tab) */
+:global([data-theme="dark"]) :global([class*="paint-editor_editor-container"]),
+:global([data-theme="dark"]) :global([class*="paint-editor_paint-editor"]) {
+    background-color: #18181c !important;
+    color: #e0e0e8 !important;
+}
+
+:global([data-theme="dark"]) :global([class*="paint-editor_editor-container-top"]),
+:global([data-theme="dark"]) :global([class*="fixed-tools_row"]),
+:global([data-theme="dark"]) :global([class*="mode-tools_mode-tools"]) {
+    background-color: #18181c !important;
+    border-color: #2e2e38 !important;
+}
+
+:global([data-theme="dark"]) :global([class*="button-group-button"]),
+:global([data-theme="dark"]) :global([class*="paint-editor_button-group-button"]) {
+    background-color: #24242c !important;
+    border-color: #343440 !important;
+    color: #e0e0e8 !important;
+}
+
+:global([data-theme="dark"]) :global([class*="button-group-button"]):hover,
+:global([data-theme="dark"]) :global([class*="paint-editor_button-group-button"]):hover {
+    background-color: #32323e !important;
+}
+
+:global([data-theme="dark"]) :global([class*="tool-select-base_mod-tool-select"]) {
+    background-color: #24242c !important;
+    border-color: #343440 !important;
+}
+
+:global([data-theme="dark"]) :global([class*="tool-select-base_mod-tool-select"]):hover {
+    background-color: #32323e !important;
+    border-color: #4c97ff !important;
+}
+
+:global([data-theme="dark"]) :global([class*="tool-select-base_is-selected"]),
+:global([data-theme="dark"]) :global([class*="tool-select-base_mod-tool-select"][class*="is-selected"]) {
+    background-color: #4c97ff !important;
+    border-color: #4c97ff !important;
+}
+
+:global([data-theme="dark"]) :global([class*="color-button_color-button"]) {
+    background-color: #24242c !important;
+    border-color: #343440 !important;
+    color: #ffffff !important;
+}
+
+:global([data-theme="dark"]) :global([class*="color-picker-wrapper"]),
+:global([data-theme="dark"]) :global([class*="color-picker_color-picker"]) {
+    background-color: #22222a !important;
+    border: 1px solid #363644 !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6) !important;
+    color: #ffffff !important;
+}
+
+:global([data-theme="dark"]) :global([class*="color-picker_row-header"]),
+:global([data-theme="dark"]) :global([class*="color-picker_label-name"]) {
+    color: #b0b0bc !important;
+}
+
+:global([data-theme="dark"]) :global([class*="paint-editor_canvas-container"]) {
+    background-color: #101014 !important;
+}
+
+:global([data-theme="dark"]) :global([class*="paint-editor_zoom-controls"]) button,
+:global([data-theme="dark"]) :global([class*="paint-editor_bitmap-button"]) {
+    background-color: #24242c !important;
+    border: 1px solid #343440 !important;
+    color: #e0e0e8 !important;
+}
+
+:global([data-theme="dark"]) :global([class*="fixed-tools_costume-input"]),
+:global([data-theme="dark"]) :global([class*="input-group_input-group"]) input {
+    background-color: #121216 !important;
+    color: #ffffff !important;
+    border: 1px solid #32323e !important;
+}
+
+:global([data-theme="dark"]) :global([class*="font-dropdown_font-dropdown"]),
+:global([data-theme="dark"]) :global([class*="font-dropdown_mod-context-menu"]) {
+    background-color: #22222a !important;
+    border-color: #363644 !important;
+    color: #ffffff !important;
+}
+
+/* Sound Editor (Sounds Tab) */
+:global([data-theme="dark"]) :global([class*="sound-editor_editor-container"]),
+:global([data-theme="dark"]) :global([class*="sound-editor_sound-editor"]) {
+    background-color: #18181c !important;
+    color: #e0e0e8 !important;
+}
+
+:global([data-theme="dark"]) :global([class*="sound-editor_waveform-container"]) {
+    background: #121216 !important;
+    border-color: #2a2a32 !important;
+}
+
+:global([data-theme="dark"]) :global([class*="sound-editor_button"]) {
+    background-color: #24242c !important;
+    color: #e0e0e8 !important;
+    border: 1px solid #343440 !important;
+}
+
+:global([data-theme="dark"]) :global([class*="sound-editor_button"]):hover {
+    background-color: #32323e !important;
+}
+
+:global([data-theme="dark"]) :global([class*="sound-editor_trim-button"]) {
+    color: #c0c0cc !important;
+}
+
+:global([data-theme="dark"]) :global([class*="sound-editor_input-group"]) {
+    border-color: #2e2e38 !important;
+}
+
+/* Action Menus (Floating + Buttons & Flyout Menus) */
+:global([data-theme="dark"]) :global([class*="action-menu_menu"]) {
+    background-color: #22222a !important;
+    border: 1px solid #363644 !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6) !important;
+}
+
+:global([data-theme="dark"]) :global([class*="action-menu_tooltip"]) {
+    background-color: #141418 !important;
+    color: #ffffff !important;
+    border: 1px solid #363644 !important;
+}
+
+:global([data-theme="dark"]) :global([class*="action-menu_button"]) {
+    background-color: #282832 !important;
+}
+
+:global([data-theme="dark"]) :global([class*="action-menu_button"]):hover {
+    background-color: #363644 !important;
+}
+
+/* Modals, Prompts, Dialogs */
 :global([data-theme="dark"]) :global([class*="modal_modal-content"]),
 :global([data-theme="dark"]) :global([class*="library_library"]) {
-    background-color: #1c1c20 !important;
-    color: #e0e0e0 !important;
+    background-color: #1a1a20 !important;
+    color: #e0e0e8 !important;
+}
+
+:global([data-theme="dark"]) :global([class*="modal_header"]) {
+    background-color: #141418 !important;
+    border-bottom: 1px solid #2a2a32 !important;
+    color: #ffffff !important;
+}
+
+:global([data-theme="dark"]) :global([class*="prompt_modal-content"]),
+:global([data-theme="dark"]) :global([class*="prompt_body"]),
+:global([data-theme="dark"]) :global([class*="custom-procedures_modal-content"]) {
+    background-color: #1e1e24 !important;
+    color: #e0e0e8 !important;
+}
+
+:global([data-theme="dark"]) :global([class*="tag-button_tag-button"]) {
+    background-color: #24242c !important;
+    color: #b0b0bc !important;
+    border: 1px solid #343440 !important;
+}
+
+:global([data-theme="dark"]) :global([class*="tag-button_active"]),
+:global([data-theme="dark"]) :global([class*="tag-button_tag-button"][class*="active"]) {
+    background-color: #4c97ff !important;
+    color: #ffffff !important;
+    border-color: #4c97ff !important;
 }
 
 :global([data-theme="dark"]) :global([class*="library_filter-bar"]) {
-    background-color: #242428 !important;
-    border-bottom: 1px solid #333338 !important;
+    background-color: #202026 !important;
+    border-bottom: 1px solid #2e2e38 !important;
 }
 
 :global([data-theme="dark"]) :global([class*="library_filter-bar"]) input {
-    background-color: #141416 !important;
+    background-color: #121216 !important;
     color: #ffffff !important;
-    border-color: #3e3e44 !important;
+    border-color: #363644 !important;
 }
 
 :global([data-theme="dark"]) :global([class*="library-item_library-item"]) {
-    background-color: #242428 !important;
+    background-color: #22222a !important;
     color: #ffffff !important;
-    border: 1px solid #333338 !important;
+    border: 1px solid #2e2e38 !important;
 }
 
 :global([data-theme="dark"]) :global([class*="library-item_library-item"]):hover {
-    background-color: #2e2e36 !important;
+    background-color: #2c2c36 !important;
     border-color: #4c97ff !important;
 }
 
@@ -193,28 +591,21 @@
 }
 
 :global([data-theme="dark"]) :global([class*="library-item_featured-description"]) {
-    color: #b0b0b8 !important;
+    color: #a8a8b4 !important;
 }
 
 :global([data-theme="dark"]) :global([class*="library-item_featured-extension-metadata"]) {
-    color: #888890 !important;
+    color: #888894 !important;
 }
 
 /* Backpack */
 :global([data-theme="dark"]) :global([class*="backpack_backpack-container"]),
 :global([data-theme="dark"]) :global([class*="backpack_backpack-header"]) {
-    background-color: #202024 !important;
-    color: #e0e0e0 !important;
-    border-color: #2e2e33 !important;
+    background-color: #1c1c22 !important;
+    color: #e0e0e8 !important;
+    border-color: #2a2a32 !important;
 }
 
-/* Paint Editor & Sound Editor */
-:global([data-theme="dark"]) :global([class*="asset-panel_wrapper"]) {
-    background-color: #18181b !important;
-}
-
-:global([data-theme="dark"]) :global([class*="sound-editor_sound-editor"]),
-:global([data-theme="dark"]) :global([class*="paint-editor_paint-editor"]) {
-    background-color: #18181b !important;
-    color: #e0e0e0 !important;
+:global([data-theme="dark"]) :global([class*="backpack_backpack-list"]) {
+    background-color: #141418 !important;
 }

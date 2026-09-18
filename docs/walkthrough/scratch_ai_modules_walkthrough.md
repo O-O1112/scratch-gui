@@ -1,56 +1,42 @@
-# Scratch GUI AI 模組整合、深色模式與 GitHub Pages 上線成果
+# Scratch GUI 全面深色模式 (Dark Mode) 優化與異常修復
 
-本次任務已全數完成，包含 AI 視覺辨識模組整合、模組庫精簡、全域深色模式、即時 FPS 幀率監控器，並已依照指示移除 AI 範例選單與範例專案檔，重新編譯構建後成功發布至 **GitHub Pages** 正式上線。
+已針對使用者反饋之「深色模式不全面」及「部分區域顏色異常」進行全面深度排查與全域重構。
 
 ---
 
-## 🌐 線上體驗連結
+## 🛠️ 異常根因排查與修復清單
 
-- **線上直接試用（GitHub Pages）**：[https://o-o1112.github.io/scratch-gui/](https://o-o1112.github.io/scratch-gui/)
+### 1. 積木顏色過暗與可讀性異常修復
+- **問題根因**：原先 `src/lib/themes/dark/index.js` 將所有積木分類主要色（`primary`）設為接近純黑（如 `#0F1E33`、`#1E1433` 等），導致在深色工作區中積木幾近隱形、各分類無法肉眼辨別。
+- **修復方案**：還原 Scratch 經典且具高辨識度的彩色積木色系（藍色動作、紫色外觀、桃紅音效、橘黃控制、金黃事件、青色偵測、綠色運算、橙色變數），並將積木工作區背景 (`#18181c`)、積木分類側欄 (`#141418`) 與積木庫調色盤 (`#18181c`) 設為舒適深色，維持白字高對比與高易讀性。
+
+### 2. AI 擴充積木色彩覆蓋異常修復
+- **問題根因**：`src/lib/themes/blockHelpers.js` 中的 `injectExtensionCategoryTheme` 與 `injectExtensionBlockTheme` 針對非預設主題，一律強制將所有擴充模組覆蓋為畫筆模組的深綠色，造成 Handpose、Facemesh、ML2Scratch 失去原有圖示與獨立代表色。
+- **修復方案**：限制僅高對比模式才強制統一顏色，深色模式保留各 AI 擴充專屬卡片色與圖示（如 ML2Scratch 紅色、Handpose 藍紫色、Facemesh 綠青色）。
+
+### 3. 「造型」標籤頁與向量繪圖編輯器 (Scratch Paint) 全面深色化
+- **問題根因**：原本造型編輯器頂部工具列、向量工具選擇按鈕、顏色選擇器、文字與畫布週邊未納入深色樣式，導致切換至造型分頁時為大面積亮白。
+- **修復方案**：
+  - 左側造型列表面板 (`.asset-panel_wrapper`, `.selector_list-item`) 深色化。
+  - 繪圖頂部工具列、復原/重做、圖層前後、群組按鈕全數適配暗色背景 (`#24242c`) 與高對比邊框。
+  - 左側工具箱（筆刷、橡皮擦、選取、線條、矩形、橢圓）設定暗色選取態與懸停態。
+  - 填色與邊框顏色拾取下拉選單 (`color-picker`) 與色相/飽和度面板適配深色。
+
+### 4. 「音效」標籤頁與音效編輯器 (Sound Editor) 全面深色化
+- **問題根因**：音效加速、減速、變大聲、變小聲、靜音、淡入淡出、反轉、機械音等功能按鈕具備寫死的 `background: white`。
+- **修復方案**：
+  - 音波顯示區背景改為深暗色 (`#121216`)。
+  - 全數音效處理按鈕統一採用深色按鈕卡片 (`#24242c`)，搭配淺灰字體與邊框。
+
+### 5. 舞台變數監視器 (Monitors) 與彈出選單全域適配
+- **舞台變數/列表監視器**：變數框改為深色半透明背景與邊框，數值維持高對比。
+- **Blockly 右鍵選單與積木下拉選單**：右鍵 ContextMenu 與參數下拉選單全數統一為 `#22222a` 深色樣式。
+- **方向選擇器 (Direction Popover)**：修正彈窗背景與角度旋轉指針盤背景為暗色。
+- **全域滾動條 (Scrollbars)**：全站滾動條自訂為深黑底色與深灰滑塊，消除刺眼白條。
+
+---
+
+## 🌐 線上驗證與倉庫資訊
+
+- **線上最新版本（GitHub Pages）**：[https://o-o1112.github.io/scratch-gui/](https://o-o1112.github.io/scratch-gui/)
 - **GitHub 專案倉庫**：[https://github.com/O-O1112/scratch-gui](https://github.com/O-O1112/scratch-gui)
-
----
-
-## 🚀 核心功能與成果
-
-### 1. 三款 AI 視覺辨識模組整合
-- **Handpose2Scratch**（手部辨識）：利用 MediaPipe / ml5 進行手部 21 節點偵測與手勢辨識。
-- **Facemesh2Scratch**（臉部辨識）：偵測臉部 468 個網格節點與五官特徵。
-- **ML2Scratch**（機器學習影像分類）：支援即時攝影機樣本收集、分類訓練與辨識判定。
-
-### 2. 精簡擴充模組庫
-依據要求移除 9 款未勾選模組，模組選擇庫中僅保留下列 5 款：
-1. `Handpose2Scratch`
-2. `Facemesh2Scratch`
-3. `ML2Scratch`
-4. `Music`（音樂）
-5. `Pen`（畫筆）
-
-### 3. 全域深色模式 (Full Dark Mode)
-- **視覺護眼**：全域覆蓋 `#121212` / `#1c1c1f` 深灰與高對比色調，包含積木區、導覽列、分頁籤、角色清單與彈窗。
-- **一鍵切換**：導覽列設有 ☀️ / 🌙 快速切換按鈕，同時支援「設定」->「顏色模式」切換。
-- **記憶偏好**：透過 Cookie 自動記憶使用者選擇，支援系統 `prefers-color-scheme`。
-
-### 4. 舞台即時 FPS 計數器
-- 位於綠旗與停止鍵右側，即時計算繪圖幀率，方便觀察 AI 模型運行效能。
-
----
-
-## 📂 變更與檔案結構
-
-| 類別 | 檔案路徑 | 說明 |
-| :--- | :--- | :--- |
-| **AI 擴充** | `src/lib/libraries/extensions/` | 註冊 Handpose、Facemesh、ML2Scratch UI 卡片 |
-| **AI 核心** | `extensions-vm/` & `scripts/setup-extensions.js` | 封裝 AI 擴充積木邏輯並於 postinstall 自動注入 VM |
-| **深色樣式** | `src/css/dark-theme.css` | 全域深色覆蓋樣式表 |
-| **FPS 監控** | `src/components/controls/fps-counter.jsx` | 舞台即時幀率顯示組件 |
-| **部署** | `build/` -> `gh-pages` 分支 | 靜態頁面已正式部署上線 |
-
----
-
-## 驗證結果
-
-- **本地 Webpack 構建**：`npm run build` 通過，產出完整 `gui.js` 與靜態資源。
-- **GitHub Pages 部署**：
-  - HTTP 狀態碼：`200 OK`
-  - 資源載入：`index.html`、`gui.js`、`chunks/` 皆正常運作。

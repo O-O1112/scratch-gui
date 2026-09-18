@@ -1,4 +1,4 @@
-import {DEFAULT_THEME, getColorsForTheme, themeMap} from '.';
+import {DEFAULT_THEME, HIGH_CONTRAST_THEME, getColorsForTheme, themeMap} from '.';
 
 const getBlockIconURI = extensionIcons => {
     if (!extensionIcons) return null;
@@ -17,7 +17,7 @@ const getExtensionColors = theme => getColorsForTheme(theme).pen;
 
 /**
  * Applies extension color theme to categories.
- * No changes are applied if called with the default theme, allowing extensions to provide their own colors.
+ * No changes are applied if called with default or dark theme, allowing extensions to provide their own colors.
  * These colors are not seen if the category provides a blockIconURI.
  * @param {Array.<object>} dynamicBlockXML - XML for each category of extension blocks, returned from getBlocksXML
  * in the vm runtime.
@@ -25,8 +25,8 @@ const getExtensionColors = theme => getColorsForTheme(theme).pen;
  * @returns {Array.<object>} Dynamic block XML updated with colors.
  */
 const injectExtensionCategoryTheme = (dynamicBlockXML, theme) => {
-    // Don't do any manipulation for the default theme
-    if (theme === DEFAULT_THEME) return dynamicBlockXML;
+    // Only high-contrast theme overrides extension categories
+    if (theme !== HIGH_CONTRAST_THEME) return dynamicBlockXML;
 
     const extensionColors = getExtensionColors(theme);
     const extensionIcons = themeMap[theme].extensions;
@@ -78,14 +78,14 @@ const injectBlockIcons = (blockInfoJson, theme) => {
 
 /**
  * Applies extension color theme to static block json.
- * No changes are applied if called with the default theme, allowing extensions to provide their own colors.
+ * No changes are applied if called with default or dark theme, allowing extensions to provide their own colors.
  * @param {object} blockInfoJson - Static block json
  * @param {string} theme - Theme name
  * @returns {object} Block info json with updated colors. The original blockInfoJson is not modified.
  */
 const injectExtensionBlockTheme = (blockInfoJson, theme) => {
-    // Don't do any manipulation for the default theme
-    if (theme === DEFAULT_THEME) return blockInfoJson;
+    // Only high-contrast theme overrides extension blocks
+    if (theme !== HIGH_CONTRAST_THEME) return blockInfoJson;
 
     const extensionColors = getExtensionColors(theme);
 
