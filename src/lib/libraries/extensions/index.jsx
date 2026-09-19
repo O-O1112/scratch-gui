@@ -16,6 +16,9 @@ import facemesh2scratchInsetIconURL from './facemesh2scratch/facemesh2scratch-sm
 import ml2scratchIconURL from './ml2scratch/ml2scratch.png';
 import ml2scratchInsetIconURL from './ml2scratch/ml2scratch-small.png';
 
+import posenet2scratchIconURL from './posenet2scratch/posenet2scratch.png';
+import posenet2scratchInsetIconURL from './posenet2scratch/posenet2scratch-small.png';
+
 import consoleIconURL from './console/console.svg';
 import consoleInsetIconURL from './console/console-small.svg';
 
@@ -87,6 +90,19 @@ export default [
         internetConnectionRequired: true,
         bluetoothRequired: false,
         helpLink: 'https://champierre.github.io/ml2scratch/'
+    },
+    {
+        name: 'PoseNet2Scratch',
+        extensionId: 'posenet2scratch',
+        collaborator: 'champierre',
+        iconURL: posenet2scratchIconURL,
+        insetIconURL: posenet2scratchInsetIconURL,
+        description: '身體姿態辨識，即時追蹤全身 17 個關節骨架點座標。',
+        featured: true,
+        disabled: false,
+        internetConnectionRequired: true,
+        bluetoothRequired: false,
+        helpLink: 'https://github.com/champierre/posenet2scratch/'
     },
     {
         name: (

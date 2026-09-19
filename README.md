@@ -5,6 +5,7 @@
 本專案已整合以下 AI 擴充模組，並精簡擴充庫僅保留指定核心項目：
 - **Handpose2Scratch**（手部辨識）：即時追蹤手部 21 個關節點座標與手勢狀態。來源：[champierre/handpose2scratch](https://github.com/champierre/handpose2scratch)
 - **Facemesh2Scratch**（臉部辨識）：即時估算臉部 468 個特徵點位置與多張臉孔。來源：[champierre/facemesh2scratch](https://github.com/champierre/facemesh2scratch)
+- **PoseNet2Scratch**（身體姿態辨識）：即時追蹤全身 17 個骨架關節點座標。來源：[champierre/posenet2scratch](https://github.com/champierre/posenet2scratch)
 - **ML2Scratch**（機器學習辨識）：透過 Web 攝影機訓練與即時圖片/動作分類。來源：[champierre/ml2scratch](https://github.com/champierre/ml2scratch)
 - **音樂 (Music)** 與 **畫筆 (Pen)**：官方經典繪圖與音樂核心積木。
 - **控制台 (Console)**：瀏覽器開發者控制台輸出、除錯日誌（log/warn/error/info）、計時器與計數器。

@@ -31,7 +31,8 @@ const builtinExtensions = {
     custom: () => require('../extensions/scratch3_custom'),
     cursor: () => require('../extensions/scratch3_cursor'),
     storage: () => require('../extensions/scratch3_storage'),
-    blocklang: () => require('../extensions/scratch3_blocklang')
+    blocklang: () => require('../extensions/scratch3_blocklang'),
+    posenet2scratch: () => require('../extensions/scratch3_posenet2scratch')
 };
 
 /**
