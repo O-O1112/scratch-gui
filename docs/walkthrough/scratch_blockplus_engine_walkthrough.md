@@ -42,14 +42,13 @@ print("計算結果:", result)
 
 ---
 
-## Scratch 積木清單
+## Scratch 積木清單（直接支援單行多語言撰寫）
 
 | 積木外觀 | 類型 | 說明 |
 | :--- | :--- | :--- |
-| `執行 Block Plus 程式碼 [CODE]` | Command | 執行完整 Block Plus 腳本（可含多語言標籤） |
-| `計算 Block Plus 表達式 [EXPR]` | Reporter | 同步計算表達式並回傳結果（0ms 延遲） |
-| `執行 Block Plus 並回傳輸出 [CODE]` | Reporter | 執行腳本並回傳所有 print / log 輸出結果 |
-| `執行 <[LANG]> 區塊程式碼 [CODE]` | Command | 下拉選單選擇 `py` / `js` / `block` / `sql` / `json` / `html` / `del` 直接執行 |
+| `執行 Block 程式碼 [CODE]` | Command | 直接輸入單行或多行標籤程式碼（如 `<py>print('123')<\py>` 或 `<py>x=10</py><js>print(x)</js>`），精靈同步說出結果 |
+| `執行 Block 程式碼並回傳 [CODE]` | Reporter | 直接輸入標籤程式碼並在 Scratch 氣泡中同步回傳輸出 |
+| `計算 Block 表達式 [EXPR]` | Reporter | 同步計算表達式並回傳結果（0ms 延遲） |
 | `Block 全域變數 [KEY]` | Reporter | 讀取 Block 引擎狀態變數 |
 | `設 Block 全域變數 [KEY] 為 [VALUE]` | Command | 寫入 Block 引擎狀態變數 |
 | `刪除 Block 全域變數 [KEY]` | Command | 刪除指定變數 |
