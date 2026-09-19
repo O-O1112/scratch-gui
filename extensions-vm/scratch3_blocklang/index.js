@@ -80,49 +80,33 @@ class Scratch3BlockLang {
                 {
                     opcode: 'executeBlock',
                     blockType: BlockType.COMMAND,
-                    text: '執行 Block Plus 程式碼 [CODE]',
+                    text: '執行 Block 程式碼 [CODE]',
                     arguments: {
                         CODE: {
                             type: ArgumentType.STRING,
-                            defaultValue: 'func greet(name):\n    return "Hello, " + name\nblock\n\nprint(greet("Scratch"))'
-                        }
-                    }
-                },
-                {
-                    opcode: 'evaluateExpr',
-                    blockType: BlockType.REPORTER,
-                    text: '計算 Block Plus 表達式 [EXPR]',
-                    arguments: {
-                        EXPR: {
-                            type: ArgumentType.STRING,
-                            defaultValue: 'range(5)'
+                            defaultValue: "<py>print('123')<\\py>"
                         }
                     }
                 },
                 {
                     opcode: 'executeAndGetOutput',
                     blockType: BlockType.REPORTER,
-                    text: '執行 Block Plus 並回傳輸出 [CODE]',
+                    text: '執行 Block 程式碼並回傳 [CODE]',
                     arguments: {
                         CODE: {
                             type: ArgumentType.STRING,
-                            defaultValue: 'for i in range(3):\n    print("Count:", i)\nblock'
+                            defaultValue: "<py>print('123')<\\py>"
                         }
                     }
                 },
                 {
-                    opcode: 'executeLang',
-                    blockType: BlockType.COMMAND,
-                    text: '執行 <[LANG]> 區塊程式碼 [CODE]',
+                    opcode: 'evaluateExpr',
+                    blockType: BlockType.REPORTER,
+                    text: '計算 Block 表達式 [EXPR]',
                     arguments: {
-                        LANG: {
+                        EXPR: {
                             type: ArgumentType.STRING,
-                            menu: 'LANG_MENU',
-                            defaultValue: 'py'
-                        },
-                        CODE: {
-                            type: ArgumentType.STRING,
-                            defaultValue: 'score = 100\nprint("Score from Python:", score)'
+                            defaultValue: '123 * 2'
                         }
                     }
                 },
@@ -185,21 +169,7 @@ class Scratch3BlockLang {
                     blockType: BlockType.COMMAND,
                     text: '重設 Block 引擎狀態'
                 }
-            ],
-            menus: {
-                LANG_MENU: {
-                    acceptReporters: true,
-                    items: [
-                        { text: 'Python (<py>)', value: 'py' },
-                        { text: 'JavaScript (<js>)', value: 'js' },
-                        { text: 'Native Block', value: 'block' },
-                        { text: 'SQLite (<sql>)', value: 'sql' },
-                        { text: 'JSON (<json>)', value: 'json' },
-                        { text: 'HTML (<html>)', value: 'html' },
-                        { text: 'Delete State (<del>)', value: 'del' }
-                    ]
-                }
-            }
+            ]
         };
     }
 
@@ -240,35 +210,6 @@ class Scratch3BlockLang {
         const newLogs = this.engine.outputLogs.slice(prevLogsLen);
         if (newLogs.length > 0) return newLogs.join('\n');
         return res !== undefined ? String(res) : '';
-    }
-
-    executeLang (args) {
-        const lang = Cast.toString(args.LANG).toLowerCase();
-        const rawCode = Cast.toString(args.CODE);
-        let wrappedCode = rawCode;
-        if (lang !== 'block') {
-            wrappedCode = `<${lang}>\n${rawCode}\n</${lang}>`;
-        }
-        const target = this.runtime.getEditingTarget();
-        const prevLogsLen = this.engine.outputLogs.length;
-
-        const res = this.engine.execute(wrappedCode);
-        if (res && typeof res.then === 'function') {
-            return res.then(val => {
-                const newLogs = this.engine.outputLogs.slice(prevLogsLen);
-                const toShow = newLogs.length > 0 ? newLogs.join('\n') : (val !== undefined ? String(val) : '');
-                if (toShow && target) {
-                    this.runtime.emit('SAY', target, 'say', String(toShow));
-                }
-                return val;
-            });
-        }
-        const newLogs = this.engine.outputLogs.slice(prevLogsLen);
-        const toShow = newLogs.length > 0 ? newLogs.join('\n') : (res !== undefined ? String(res) : '');
-        if (toShow && target) {
-            this.runtime.emit('SAY', target, 'say', String(toShow));
-        }
-        return res;
     }
 
     getBlockVar (args) {
