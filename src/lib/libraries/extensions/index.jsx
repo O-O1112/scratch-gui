@@ -34,6 +34,15 @@ import storageInsetIconURL from './storage/storage-small.svg';
 import blocklangIconURL from './blocklang/blocklang.svg';
 import blocklangInsetIconURL from './blocklang/blocklang-small.svg';
 
+import gamepadIconURL from './gamepad/gamepad.svg';
+import gamepadInsetIconURL from './gamepad/gamepad-small.svg';
+
+import fetchIconURL from './fetch/fetch.svg';
+import fetchInsetIconURL from './fetch/fetch-small.svg';
+
+import jsonIconURL from './json/json.svg';
+import jsonInsetIconURL from './json/json-small.svg';
+
 export default [
     {
         name: 'Handpose2Scratch',
@@ -191,6 +200,36 @@ export default [
         iconURL: blocklangIconURL,
         insetIconURL: blocklangInsetIconURL,
         description: '支援 Native Block 語法與 <js>、<py>、<sql>、<json>、<html> 多語言狀態管線與精靈雙向控制。',
+        featured: true,
+        disabled: false
+    },
+    {
+        name: '遊戲手把 (Gamepad)',
+        extensionId: 'gamepad',
+        collaborator: 'TurboWarp / GarboMuffin',
+        iconURL: gamepadIconURL,
+        insetIconURL: gamepadInsetIconURL,
+        description: '支援 Xbox、PlayStation、Switch 等 USB 與藍牙手把控制器，包含按鈕、搖桿軸與震動反饋。',
+        featured: true,
+        disabled: false
+    },
+    {
+        name: '網路請求 (Fetch / API)',
+        extensionId: 'fetch',
+        collaborator: 'TurboWarp / Web API',
+        iconURL: fetchIconURL,
+        insetIconURL: fetchInsetIconURL,
+        description: '發送 HTTP GET 與 POST 請求，連線外部 Web API 並即時擷取 JSON 欄位。',
+        featured: true,
+        disabled: false
+    },
+    {
+        name: 'JSON 資料處理 (JSON)',
+        extensionId: 'json',
+        collaborator: 'Skyhigh173 / Community',
+        iconURL: jsonIconURL,
+        insetIconURL: jsonInsetIconURL,
+        description: '解析、查詢、修改與建立 JSON 物件與陣列資料，支援巢狀路徑與多層結構操作。',
         featured: true,
         disabled: false
     }

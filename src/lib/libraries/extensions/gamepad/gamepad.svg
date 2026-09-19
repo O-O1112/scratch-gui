@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 372" width="600" height="372">
+  <defs>
+    <linearGradient id="gpBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#4C1D95"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="372" rx="16" fill="url(#gpBg)"/>
+  
+  <!-- Controller Graphic -->
+  <g transform="translate(60, 95)">
+    <!-- Controller Body -->
+    <path d="M40 50 C20 80, 10 140, 35 165 C55 180, 75 140, 85 110 L115 110 C125 140, 145 180, 165 165 C190 140, 180 80, 160 50 C140 25, 60 25, 40 50 Z" 
+          fill="#312E81" stroke="#EDE9FE" stroke-width="4"/>
+    <!-- D-Pad -->
+    <rect x="52" y="70" width="10" height="26" rx="2" fill="#DDD6FE"/>
+    <rect x="44" y="78" width="26" height="10" rx="2" fill="#DDD6FE"/>
+    <!-- Action Buttons -->
+    <circle cx="138" cy="72" r="5" fill="#F43F5E"/>
+    <circle cx="150" cy="84" r="5" fill="#10B981"/>
+    <circle cx="126" cy="84" r="5" fill="#3B82F6"/>
+    <circle cx="138" cy="96" r="5" fill="#FBBF24"/>
+    <!-- Thumbsticks -->
+    <circle cx="75" cy="112" r="13" fill="#1E1B4B" stroke="#A78BFA" stroke-width="3"/>
+    <circle cx="125" cy="112" r="13" fill="#1E1B4B" stroke="#A78BFA" stroke-width="3"/>
+    <!-- Center Buttons -->
+    <rect x="90" y="76" width="8" height="5" rx="2" fill="#C4B5FD"/>
+    <rect x="102" y="76" width="8" height="5" rx="2" fill="#C4B5FD"/>
+  </g>
+
+  <text x="270" y="150" fill="#FFFFFF" font-family="system-ui, -apple-system, sans-serif" font-size="38" font-weight="bold">Gamepad</text>
+  <text x="270" y="195" fill="#DDD6FE" font-family="system-ui, -apple-system, sans-serif" font-size="20">Xbox, PS, Switch &amp; USB Controller</text>
+  <text x="270" y="235" fill="#EDE9FE" font-family="system-ui, -apple-system, sans-serif" font-size="18">支援手把搖桿、按鈕、板機與震動反饋</text>
+</svg>

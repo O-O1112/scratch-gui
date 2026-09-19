@@ -27,42 +27,17 @@ function copyDirSync(src, dest) {
 }
 
 console.log('[setup-extensions] Copying extensions to scratch-vm...');
-copyDirSync(
-    path.join(extensionsVmDir, 'scratch3_handpose2scratch'),
-    path.join(vmDir, 'src', 'extensions', 'scratch3_handpose2scratch')
-);
-copyDirSync(
-    path.join(extensionsVmDir, 'scratch3_facemesh2scratch'),
-    path.join(vmDir, 'src', 'extensions', 'scratch3_facemesh2scratch')
-);
-copyDirSync(
-    path.join(extensionsVmDir, 'scratch3_ml2scratch'),
-    path.join(vmDir, 'src', 'extensions', 'scratch3_ml2scratch')
-);
-copyDirSync(
-    path.join(extensionsVmDir, 'scratch3_console'),
-    path.join(vmDir, 'src', 'extensions', 'scratch3_console')
-);
-copyDirSync(
-    path.join(extensionsVmDir, 'scratch3_custom'),
-    path.join(vmDir, 'src', 'extensions', 'scratch3_custom')
-);
-copyDirSync(
-    path.join(extensionsVmDir, 'scratch3_cursor'),
-    path.join(vmDir, 'src', 'extensions', 'scratch3_cursor')
-);
-copyDirSync(
-    path.join(extensionsVmDir, 'scratch3_storage'),
-    path.join(vmDir, 'src', 'extensions', 'scratch3_storage')
-);
-copyDirSync(
-    path.join(extensionsVmDir, 'scratch3_blocklang'),
-    path.join(vmDir, 'src', 'extensions', 'scratch3_blocklang')
-);
-copyDirSync(
-    path.join(extensionsVmDir, 'scratch3_posenet2scratch'),
-    path.join(vmDir, 'src', 'extensions', 'scratch3_posenet2scratch')
-);
+
+const extensionEntries = fs.readdirSync(extensionsVmDir, {withFileTypes: true});
+for (const entry of extensionEntries) {
+    if (entry.isDirectory() && entry.name.startsWith('scratch3_')) {
+        console.log(`[setup-extensions] Syncing ${entry.name}...`);
+        copyDirSync(
+            path.join(extensionsVmDir, entry.name),
+            path.join(vmDir, 'src', 'extensions', entry.name)
+        );
+    }
+}
 
 fs.copyFileSync(
     path.join(extensionsVmDir, 'extension-manager.js'),

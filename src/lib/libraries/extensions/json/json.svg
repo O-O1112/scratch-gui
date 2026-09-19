@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 372" width="600" height="372">
+  <defs>
+    <linearGradient id="jsonBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D97706"/>
+      <stop offset="100%" stop-color="#78350F"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="372" rx="16" fill="url(#jsonBg)"/>
+
+  <!-- Brackets Graphic -->
+  <g transform="translate(60, 95)">
+    <rect x="0" y="0" width="160" height="160" rx="20" fill="#92400E" stroke="#FDE68A" stroke-width="3"/>
+    <text x="80" y="110" fill="#FEF3C7" font-family="monospace" font-size="96" font-weight="bold" text-anchor="middle">{ }</text>
+  </g>
+
+  <text x="260" y="150" fill="#FFFFFF" font-family="system-ui, -apple-system, sans-serif" font-size="38" font-weight="bold">JSON Tools</text>
+  <text x="260" y="195" fill="#FDE68A" font-family="system-ui, -apple-system, sans-serif" font-size="20">Parse, Query &amp; Manipulate Data</text>
+  <text x="260" y="235" fill="#FEF3C7" font-family="system-ui, -apple-system, sans-serif" font-size="18">強大的物件與陣列資料解析與路徑存取</text>
+</svg>

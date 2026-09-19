@@ -32,7 +32,10 @@ const builtinExtensions = {
     cursor: () => require('../extensions/scratch3_cursor'),
     storage: () => require('../extensions/scratch3_storage'),
     blocklang: () => require('../extensions/scratch3_blocklang'),
-    posenet2scratch: () => require('../extensions/scratch3_posenet2scratch')
+    posenet2scratch: () => require('../extensions/scratch3_posenet2scratch'),
+    gamepad: () => require('../extensions/scratch3_gamepad'),
+    fetch: () => require('../extensions/scratch3_fetch'),
+    json: () => require('../extensions/scratch3_json')
 };
 
 /**

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 372" width="600" height="372">
+  <defs>
+    <linearGradient id="fetchBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284C7"/>
+      <stop offset="100%" stop-color="#075985"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="372" rx="16" fill="url(#fetchBg)"/>
+
+  <!-- Network & Cloud Graphic -->
+  <g transform="translate(70, 100)">
+    <!-- Globe -->
+    <circle cx="70" cy="70" r="55" fill="#0369A1" stroke="#BAE6FD" stroke-width="3.5"/>
+    <ellipse cx="70" cy="70" rx="25" ry="55" fill="none" stroke="#BAE6FD" stroke-width="2.5"/>
+    <line x1="15" y1="70" x2="125" y2="70" stroke="#BAE6FD" stroke-width="2.5"/>
+    <line x1="25" y1="40" x2="115" y2="40" stroke="#BAE6FD" stroke-width="2"/>
+    <line x1="25" y1="100" x2="115" y2="100" stroke="#BAE6FD" stroke-width="2"/>
+    <!-- Exchange Arrows -->
+    <path d="M120 40 L145 40 L135 30" fill="none" stroke="#38BDF8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M145 100 L120 100 L130 110" fill="none" stroke="#FBBF24" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <text x="260" y="150" fill="#FFFFFF" font-family="system-ui, -apple-system, sans-serif" font-size="38" font-weight="bold">Fetch &amp; API</text>
+  <text x="260" y="195" fill="#BAE6FD" font-family="system-ui, -apple-system, sans-serif" font-size="20">HTTP GET, POST &amp; Web Services</text>
+  <text x="260" y="235" fill="#E0F2FE" font-family="system-ui, -apple-system, sans-serif" font-size="18">即時連線網路請求與 JSON 資料串接</text>
+</svg>
