@@ -55,6 +55,10 @@ copyDirSync(
     path.join(extensionsVmDir, 'scratch3_storage'),
     path.join(vmDir, 'src', 'extensions', 'scratch3_storage')
 );
+copyDirSync(
+    path.join(extensionsVmDir, 'scratch3_blocklang'),
+    path.join(vmDir, 'src', 'extensions', 'scratch3_blocklang')
+);
 
 fs.copyFileSync(
     path.join(extensionsVmDir, 'extension-manager.js'),

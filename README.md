@@ -11,6 +11,7 @@
 - **自訂代碼 (Custom JS)**：支援執行自訂 JavaScript 代碼、表達式求值（Reporter）與全域變數存取。
 - **自訂游標 (Cursor)**：設定舞台滑鼠游標為指針、文字、十字、隱藏或自訂圖片網址。
 - **本地儲存 (Storage)**：基於 `localStorage` 之跨頁面、離線資料持久化存檔。
+- **Block Plus 引擎 (Block Plus)**：植入完整的多語言編程語言與直譯引擎，支援 Native Block 控制流語法（`func...block`, `for...block`, `if...block`）與 `<js>`、`<py>` (Python)、`<sql>` (SQLite)、`<json>`、`<html>`、`<del>` 跨語言狀態管線，並內建 Scratch 舞台精靈雙向橋接控制。
 - **全域深色模式 (Dark Mode)**：提供舒適護眼的深色主題（包含積木工作區、選單列、舞台周邊與角色資訊欄），支援選單切換與頂端導覽列一鍵切換（☀️/🌙）。
 - **舞台即時 FPS 計數器**：位於控制列右側，即時監控畫面與模型運算幀率。
 

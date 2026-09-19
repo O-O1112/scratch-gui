@@ -28,6 +28,9 @@ import cursorInsetIconURL from './cursor/cursor-small.svg';
 import storageIconURL from './storage/storage.svg';
 import storageInsetIconURL from './storage/storage-small.svg';
 
+import blocklangIconURL from './blocklang/blocklang.svg';
+import blocklangInsetIconURL from './blocklang/blocklang-small.svg';
+
 export default [
     {
         name: 'Handpose2Scratch',
@@ -162,6 +165,16 @@ export default [
         iconURL: storageIconURL,
         insetIconURL: storageInsetIconURL,
         description: '使用 localStorage 進行跨頁面、離線記憶之玩家資料持久化存檔。',
+        featured: true,
+        disabled: false
+    },
+    {
+        name: 'Block Plus 引擎',
+        extensionId: 'blocklang',
+        collaborator: 'O-O1112 / Block',
+        iconURL: blocklangIconURL,
+        insetIconURL: blocklangInsetIconURL,
+        description: '支援 Native Block 語法與 <js>、<py>、<sql>、<json>、<html> 多語言狀態管線與精靈雙向控制。',
         featured: true,
         disabled: false
     }
