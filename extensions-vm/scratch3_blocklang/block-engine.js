@@ -19,7 +19,7 @@ class BlockEngine {
         this.isPyodideLoading = false;
 
         // Try initializing Pyodide asynchronously if in browser
-        if (typeof window !== 'undefined' && !window.__block_pyodide_promise) {
+        if (typeof window !== 'undefined') {
             this.initPyodide();
         }
     }
@@ -33,6 +33,12 @@ class BlockEngine {
         this.outputLogs.push(text);
         if (typeof console !== 'undefined' && console.log) {
             console.log('[Block Plus]', text);
+        }
+        // Direct visual feedback on Scratch Stage: make the active sprite say it!
+        if (this.scratchBridge && typeof this.scratchBridge.say === 'function') {
+            try {
+                this.scratchBridge.say(text);
+            } catch (e) {}
         }
     }
 
@@ -79,9 +85,7 @@ class BlockEngine {
         if (window.__block_pyodide_promise) {
             try {
                 this.pyodide = await window.__block_pyodide_promise;
-            } catch (e) {
-                console.warn('[Block Plus] Pyodide load failed, using embedded fallback.', e);
-            }
+            } catch (e) {}
             return;
         }
 
@@ -103,7 +107,7 @@ class BlockEngine {
                 window.__block_pyodide = py;
                 return py;
             } catch (err) {
-                console.warn('[Block Plus] Could not load Pyodide from CDN:', err);
+                console.warn('[Block Plus] Pyodide CDN load warning (fallback runner will handle Python):', err);
                 return null;
             }
         })();
@@ -115,47 +119,55 @@ class BlockEngine {
 
     /**
      * Parse code into blocks according to Block language specifications
+     * Accurately parses inline tags <py>...</py>, <py>...<\py>, multiline tags, and untagged Block code.
      */
     parseBlocks(code) {
-        const normalized = (code || '').replace(/\r\n/g, '\n').replace(/\r/g, '\n');
-        const lines = normalized.split('\n');
+        const raw = (code || '').replace(/\r\n/g, '\n').replace(/\r/g, '\n').trim();
+        if (!raw) return [];
+
+        const knownLangs = new Set(['js', 'javascript', 'py', 'python', 'sql', 'html', 'json', 'del', 'lua', 'block']);
         const blocks = [];
-        let currentLang = 'block';
-        let buffer = [];
 
-        const tagRegex = /^<(\/)?\s*([a-zA-Z0-9_\-]+)\s*>$/;
-        const knownLangs = new Set(['js', 'javascript', 'py', 'python', 'sql', 'html', 'json', 'del', 'lua']);
+        // Global regex to match: <lang>content(</lang>|<\lang>|next <tag>|end of string)
+        const regex = /<([a-zA-Z0-9_\-]+)>([\s\S]*?)(?:<\/(?:\1)>|<\\(?:\1)>|(?=<(?:js|javascript|py|python|sql|html|json|del|lua|block)>)|$)/gi;
 
-        for (let i = 0; i < lines.length; i++) {
-            const line = lines[i];
-            const trimmed = line.trim();
-            const match = trimmed.match(tagRegex);
+        let lastIndex = 0;
+        let match;
+        let foundAnyTag = false;
 
-            if (match) {
-                const isClosing = Boolean(match[1]);
-                let langName = match[2].toLowerCase();
-                if (langName === 'javascript') langName = 'js';
-                if (langName === 'python') langName = 'py';
-
-                if (!isClosing && currentLang === 'block' && knownLangs.has(langName)) {
-                    if (buffer.length > 0) {
-                        blocks.push({ language: 'block', code: buffer.join('\n') });
-                        buffer = [];
-                    }
-                    currentLang = langName;
-                    continue;
-                } else if (isClosing && currentLang === langName) {
-                    blocks.push({ language: currentLang, code: buffer.join('\n') });
-                    buffer = [];
-                    currentLang = 'block';
-                    continue;
+        while ((match = regex.exec(raw)) !== null) {
+            let lang = match[1].toLowerCase();
+            if (knownLangs.has(lang)) {
+                foundAnyTag = true;
+                const before = raw.substring(lastIndex, match.index).trim();
+                if (before) {
+                    const cleanedBefore = before.replace(/^<\/?\\?[a-zA-Z0-9_\-]+>/g, '').trim();
+                    if (cleanedBefore) blocks.push({ language: 'block', code: cleanedBefore });
                 }
+
+                if (lang === 'javascript') lang = 'js';
+                if (lang === 'python') lang = 'py';
+
+                let content = match[2].trim();
+                content = content.replace(/<\/?\\?[a-zA-Z0-9_\-]+>$/g, '').trim();
+
+                if (content) {
+                    blocks.push({ language: lang, code: content });
+                }
+                lastIndex = regex.lastIndex;
             }
-            buffer.push(line);
         }
 
-        if (buffer.length > 0) {
-            blocks.push({ language: currentLang, code: buffer.join('\n') });
+        if (foundAnyTag && lastIndex < raw.length) {
+            const remaining = raw.substring(lastIndex).trim();
+            const cleaned = remaining.replace(/^<\/?\\?[a-zA-Z0-9_\-]+>/g, '').replace(/<\/?\\?[a-zA-Z0-9_\-]+>$/g, '').trim();
+            if (cleaned) {
+                blocks.push({ language: 'block', code: cleaned });
+            }
+        }
+
+        if (!foundAnyTag) {
+            blocks.push({ language: 'block', code: raw });
         }
 
         return blocks;
@@ -247,7 +259,6 @@ class BlockEngine {
      * Execute JavaScript stage <js> ... </js>
      */
     executeJS(code) {
-        const scope = { ...this.state };
         const engine = this;
         const scratch = this.scratchBridge || {};
 
@@ -269,7 +280,6 @@ class BlockEngine {
             customConsole
         ];
 
-        // Also inject valid top-level state variables directly
         for (const key of Object.keys(this.state)) {
             if (/^[a-zA-Z_$][a-zA-Z0-9_$]*$/.test(key) && !paramNames.includes(key)) {
                 paramNames.push(key);
@@ -295,19 +305,18 @@ class BlockEngine {
      * Execute Python stage <py> ... </py>
      */
     async executePython(code) {
-        // If Pyodide is available in browser, execute via WebAssembly Python 3!
         const hasWindow = typeof window !== 'undefined';
-        if (this.pyodide || (hasWindow && window.__block_pyodide)) {
-            const py = this.pyodide || window.__block_pyodide;
+        const py = this.pyodide || (hasWindow && window.__block_pyodide);
+
+        if (py) {
             try {
                 py.globals.set('__block_source', code);
                 py.globals.set('__block_state_json', JSON.stringify(this.state));
 
                 const wrapper = `
-import json, sys, io, traceback
+import json, sys, io
 __block_scope = json.loads(__block_state_json)
 __block_stdout = io.StringIO()
-__block_stderr = io.StringIO()
 __block_error = None
 
 sys_stdout_backup = sys.stdout
@@ -335,7 +344,8 @@ json.dumps({
                 const raw = await py.runPythonAsync(wrapper);
                 const parsed = JSON.parse(raw);
                 if (parsed.output) {
-                    this.log(parsed.output.trim());
+                    const cleanOut = parsed.output.trim();
+                    this.log(cleanOut);
                 }
                 if (parsed.error) {
                     this.log('[Python Error] ' + parsed.error);
@@ -345,9 +355,9 @@ json.dumps({
                         this.state[k] = parsed.state[k];
                     }
                 }
-                return parsed.output || parsed.error || '';
+                return parsed.output ? parsed.output.trim() : (parsed.error || '');
             } catch (err) {
-                this.log('[Python Runtime Exception] ' + err.message);
+                console.warn('[Block Plus Pyodide Error, using fallback]', err);
             }
         }
 
@@ -357,22 +367,26 @@ json.dumps({
 
     /**
      * Fast local Python runner for immediate offline execution
+     * Supports multiple lines, semicolon statements, assignments, loops, and print(...)
      */
     executePythonFallback(code) {
-        const lines = code.split('\n');
-        const engine = this;
+        const statements = this.splitStatements(code);
         let lastOutput = '';
 
-        for (let i = 0; i < lines.length; i++) {
-            const line = lines[i].trim();
+        for (let i = 0; i < statements.length; i++) {
+            const line = statements[i].trim();
             if (!line || line.startsWith('#')) continue;
 
             // print(...)
             const printMatch = line.match(/^print\s*\((.*)\)$/);
             if (printMatch) {
-                const expr = printMatch[1];
-                const evaluated = this.evaluateNativeExpr(expr, this.state);
-                const outStr = typeof evaluated === 'object' ? JSON.stringify(evaluated) : String(evaluated);
+                const rawArgs = printMatch[1];
+                const args = this.splitArgs(rawArgs);
+                const values = args.map(a => {
+                    const val = this.evaluateNativeExpr(a, { state: this.state, scratch: this.scratchBridge });
+                    return typeof val === 'object' && val !== null ? JSON.stringify(val) : String(val !== undefined ? val : '');
+                });
+                const outStr = values.join(' ');
                 this.log(outStr);
                 lastOutput = outStr;
                 continue;
@@ -383,8 +397,9 @@ json.dumps({
             if (assignMatch) {
                 const varName = assignMatch[1];
                 const expr = assignMatch[2];
-                const val = this.evaluateNativeExpr(expr, this.state);
+                const val = this.evaluateNativeExpr(expr, { state: this.state, scratch: this.scratchBridge });
                 this.state[varName] = val;
+                lastOutput = val;
                 continue;
             }
 
@@ -394,18 +409,55 @@ json.dumps({
                 const varName = augMatch[1];
                 const op = augMatch[2];
                 const expr = augMatch[3];
-                const val = this.evaluateNativeExpr(expr, this.state);
+                const val = this.evaluateNativeExpr(expr, { state: this.state, scratch: this.scratchBridge });
                 const current = this.state[varName] || 0;
                 if (op === '+') this.state[varName] = current + val;
                 if (op === '-') this.state[varName] = current - val;
                 if (op === '*') this.state[varName] = current * val;
                 if (op === '/') this.state[varName] = current / val;
                 if (op === '%') this.state[varName] = current % val;
+                lastOutput = this.state[varName];
                 continue;
+            }
+
+            // Bare expression
+            const res = this.evaluateNativeExpr(line, { state: this.state, scratch: this.scratchBridge });
+            if (res !== undefined) {
+                lastOutput = res;
             }
         }
 
         return lastOutput;
+    }
+
+    splitStatements(code) {
+        const lines = [];
+        const rawLines = code.split('\n');
+        for (const rawLine of rawLines) {
+            let cur = '';
+            let inQuote = false;
+            let qChar = '';
+            for (let i = 0; i < rawLine.length; i++) {
+                const ch = rawLine[i];
+                if (inQuote) {
+                    cur += ch;
+                    if (ch === qChar && rawLine[i - 1] !== '\\') inQuote = false;
+                } else {
+                    if (ch === '"' || ch === "'") {
+                        inQuote = true;
+                        qChar = ch;
+                        cur += ch;
+                    } else if (ch === ';') {
+                        if (cur.trim()) lines.push(cur.trim());
+                        cur = '';
+                    } else {
+                        cur += ch;
+                    }
+                }
+            }
+            if (cur.trim()) lines.push(cur.trim());
+        }
+        return lines;
     }
 
     /**
@@ -460,7 +512,6 @@ json.dumps({
             // SELECT * FROM table
             const selectMatch = sql.match(/^SELECT\s+(.*?)\s+FROM\s+([a-zA-Z0-9_]+)(?:\s+WHERE\s+(.*?))?(?:\s+LIMIT\s+(\d+))?$/i);
             if (selectMatch) {
-                const columnsStr = selectMatch[1].trim();
                 const tableName = selectMatch[2].trim();
                 const limit = selectMatch[4] ? parseInt(selectMatch[4]) : Infinity;
 
@@ -811,7 +862,7 @@ json.dumps({
             const args = this.splitArgs(rawArgs);
             const values = args.map(a => {
                 const val = this.evaluateNativeExpr(a, context);
-                return typeof val === 'object' ? JSON.stringify(val) : String(val);
+                return typeof val === 'object' && val !== null ? JSON.stringify(val) : String(val !== undefined ? val : '');
             });
             const outStr = values.join(' ');
             context.output(outStr);
@@ -876,7 +927,29 @@ json.dumps({
             return this.splitArgs(inner).map(item => this.evaluateNativeExpr(item, context));
         }
 
-        // Builtin functions
+        // Builtin math & utility helpers
+        // sum(list)
+        const sumMatch = expr.match(/^sum\s*\((.*?)\)$/i);
+        if (sumMatch) {
+            const list = this.evaluateNativeExpr(sumMatch[1], context);
+            if (Array.isArray(list)) return list.reduce((a, b) => Number(a) + Number(b), 0);
+            return 0;
+        }
+
+        // min(...), max(...)
+        const minMatch = expr.match(/^min\s*\((.*?)\)$/i);
+        if (minMatch) {
+            const args = this.splitArgs(minMatch[1]).map(a => this.evaluateNativeExpr(a, context));
+            if (args.length === 1 && Array.isArray(args[0])) return Math.min(...args[0]);
+            return Math.min(...args);
+        }
+        const maxMatch = expr.match(/^max\s*\((.*?)\)$/i);
+        if (maxMatch) {
+            const args = this.splitArgs(maxMatch[1]).map(a => this.evaluateNativeExpr(a, context));
+            if (args.length === 1 && Array.isArray(args[0])) return Math.max(...args[0]);
+            return Math.max(...args);
+        }
+
         // range(n) or range(start, stop, step)
         const rangeMatch = expr.match(/^range\s*\((.*?)\)$/i);
         if (rangeMatch) {
@@ -956,7 +1029,7 @@ json.dumps({
         // Safe JavaScript / Math expression evaluation with scope
         try {
             const state = context.state || this.state;
-            const paramNames = ['state', 'scratch', 'range', 'len', 'str', 'int', 'float'];
+            const paramNames = ['state', 'scratch', 'range', 'len', 'str', 'int', 'float', 'sum', 'min', 'max', 'math', 'Math'];
             const paramValues = [
                 state,
                 context.scratch,
@@ -964,7 +1037,12 @@ json.dumps({
                 (x) => x ? x.length || Object.keys(x).length : 0,
                 (x) => String(x),
                 (x) => parseInt(x, 10),
-                (x) => parseFloat(x)
+                (x) => parseFloat(x),
+                (arr) => Array.isArray(arr) ? arr.reduce((a, b) => Number(a) + Number(b), 0) : 0,
+                (...vals) => Math.min(...vals.flat()),
+                (...vals) => Math.max(...vals.flat()),
+                Math,
+                Math
             ];
 
             for (const key of Object.keys(state)) {
@@ -986,7 +1064,6 @@ json.dumps({
             const evalFn = new Function(...paramNames, `return (${jsExpr});`);
             return evalFn(...paramValues);
         } catch (err) {
-            // If variable lookup directly
             if (context.state && context.state.hasOwnProperty(expr)) {
                 return context.state[expr];
             }

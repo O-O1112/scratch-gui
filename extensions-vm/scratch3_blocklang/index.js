@@ -205,7 +205,26 @@ class Scratch3BlockLang {
 
     executeBlock (args) {
         const code = Cast.toString(args.CODE);
-        return this.engine.execute(code);
+        const target = this.runtime.getEditingTarget();
+        const prevLogsLen = this.engine.outputLogs.length;
+
+        const res = this.engine.execute(code);
+        if (res && typeof res.then === 'function') {
+            return res.then(val => {
+                const newLogs = this.engine.outputLogs.slice(prevLogsLen);
+                const toShow = newLogs.length > 0 ? newLogs.join('\n') : (val !== undefined ? String(val) : '');
+                if (toShow && target) {
+                    this.runtime.emit('SAY', target, 'say', String(toShow));
+                }
+                return val;
+            });
+        }
+        const newLogs = this.engine.outputLogs.slice(prevLogsLen);
+        const toShow = newLogs.length > 0 ? newLogs.join('\n') : (res !== undefined ? String(res) : '');
+        if (toShow && target) {
+            this.runtime.emit('SAY', target, 'say', String(toShow));
+        }
+        return res;
     }
 
     evaluateExpr (args) {
@@ -217,9 +236,10 @@ class Scratch3BlockLang {
     executeAndGetOutput (args) {
         const code = Cast.toString(args.CODE);
         const prevLogsLen = this.engine.outputLogs.length;
-        this.engine.executeSync(code);
+        const res = this.engine.executeSync(code);
         const newLogs = this.engine.outputLogs.slice(prevLogsLen);
-        return newLogs.join('\n');
+        if (newLogs.length > 0) return newLogs.join('\n');
+        return res !== undefined ? String(res) : '';
     }
 
     executeLang (args) {
@@ -229,7 +249,26 @@ class Scratch3BlockLang {
         if (lang !== 'block') {
             wrappedCode = `<${lang}>\n${rawCode}\n</${lang}>`;
         }
-        return this.engine.execute(wrappedCode);
+        const target = this.runtime.getEditingTarget();
+        const prevLogsLen = this.engine.outputLogs.length;
+
+        const res = this.engine.execute(wrappedCode);
+        if (res && typeof res.then === 'function') {
+            return res.then(val => {
+                const newLogs = this.engine.outputLogs.slice(prevLogsLen);
+                const toShow = newLogs.length > 0 ? newLogs.join('\n') : (val !== undefined ? String(val) : '');
+                if (toShow && target) {
+                    this.runtime.emit('SAY', target, 'say', String(toShow));
+                }
+                return val;
+            });
+        }
+        const newLogs = this.engine.outputLogs.slice(prevLogsLen);
+        const toShow = newLogs.length > 0 ? newLogs.join('\n') : (res !== undefined ? String(res) : '');
+        if (toShow && target) {
+            this.runtime.emit('SAY', target, 'say', String(toShow));
+        }
+        return res;
     }
 
     getBlockVar (args) {
