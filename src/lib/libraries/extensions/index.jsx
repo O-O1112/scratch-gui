@@ -164,12 +164,12 @@ export default [
         disabled: false
     },
     {
-        name: '自訂代碼 (Custom JS)',
+        name: '自訂代碼與監聽 (Custom & Listeners)',
         extensionId: 'custom',
         collaborator: 'Community',
         iconURL: customIconURL,
         insetIconURL: customInsetIconURL,
-        description: '自訂並執行 JavaScript 代碼、表達式求值與全域變數存取。',
+        description: '鍵盤即時輸入監聽（按鍵名稱/KeyCode/清單）、滑鼠視窗座標、時間戳記、URL解析與JS代碼執行。',
         featured: true,
         disabled: false
     },
