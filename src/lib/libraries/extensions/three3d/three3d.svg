@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 372" width="600" height="372">
+  <defs>
+    <linearGradient id="bg3d" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E1B4B"/>
+      <stop offset="50%" stop-color="#312E81"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="cubeTop" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#818CF8"/>
+      <stop offset="100%" stop-color="#6366F1"/>
+    </linearGradient>
+    <linearGradient id="cubeLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4F46E5"/>
+      <stop offset="100%" stop-color="#3730A3"/>
+    </linearGradient>
+    <linearGradient id="cubeRight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C084FC"/>
+      <stop offset="100%" stop-color="#9333EA"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="372" rx="16" fill="url(#bg3d)"/>
+  
+  <!-- Grid plane -->
+  <g stroke="#4338CA" stroke-width="1.5" opacity="0.4">
+    <line x1="100" y1="300" x2="500" y2="300"/>
+    <line x1="60" y1="330" x2="540" y2="330"/>
+    <line x1="150" y1="270" x2="450" y2="270"/>
+    <line x1="150" y1="270" x2="60" y2="330"/>
+    <line x1="250" y1="270" x2="200" y2="330"/>
+    <line x1="350" y1="270" x2="400" y2="330"/>
+    <line x1="450" y1="270" x2="540" y2="330"/>
+  </g>
+
+  <!-- 3D Isometric Cube -->
+  <g transform="translate(300, 160)">
+    <!-- Top Face -->
+    <polygon points="0,-70 60,-35 0,0 -60,-35" fill="url(#cubeTop)" stroke="#A5B4FC" stroke-width="2"/>
+    <!-- Left Face -->
+    <polygon points="-60,-35 0,0 0,70 -60,35" fill="url(#cubeLeft)" stroke="#818CF8" stroke-width="2"/>
+    <!-- Right Face -->
+    <polygon points="0,0 60,-35 60,35 0,70" fill="url(#cubeRight)" stroke="#C084FC" stroke-width="2"/>
+    
+    <!-- Wireframe accent edges -->
+    <line x1="0" y1="-70" x2="0" y2="0" stroke="#FFFFFF" stroke-width="2.5" opacity="0.8"/>
+    <line x1="-60" y1="-35" x2="0" y2="0" stroke="#FFFFFF" stroke-width="2.5" opacity="0.8"/>
+    <line x1="60" y1="-35" x2="0" y2="0" stroke="#FFFFFF" stroke-width="2.5" opacity="0.8"/>
+  </g>
+
+  <!-- Title & Badges -->
+  <text x="300" y="70" text-anchor="middle" fill="#38BDF8" font-family="'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="bold" letter-spacing="1">3D WebGL Engine</text>
+  <text x="300" y="275" text-anchor="middle" fill="#E0E7FF" font-family="'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="600">Three.js 遊戲與專案引擎</text>
+  <text x="300" y="305" text-anchor="middle" fill="#94A3B8" font-family="'Segoe UI', Roboto, sans-serif" font-size="15">真 3D 空間 • 光影相機 • 碰撞偵測 • 60 FPS</text>
+</svg>

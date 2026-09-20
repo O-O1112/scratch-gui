@@ -43,6 +43,9 @@ import fetchInsetIconURL from './fetch/fetch-small.svg';
 import jsonIconURL from './json/json.svg';
 import jsonInsetIconURL from './json/json-small.svg';
 
+import three3dIconURL from './three3d/three3d.svg';
+import three3dInsetIconURL from './three3d/three3d-small.svg';
+
 export default [
     {
         name: 'Handpose2Scratch',
@@ -230,6 +233,16 @@ export default [
         iconURL: jsonIconURL,
         insetIconURL: jsonInsetIconURL,
         description: '解析、查詢、修改與建立 JSON 物件與陣列資料，支援巢狀路徑與多層結構操作。',
+        featured: true,
+        disabled: false
+    },
+    {
+        name: '3D 遊戲與專案引擎 (Three.js 3D)',
+        extensionId: 'three3d',
+        collaborator: 'Three.js / WebGL',
+        iconURL: three3dIconURL,
+        insetIconURL: three3dInsetIconURL,
+        description: '支援 60 FPS 硬體加速 WebGL 3D 渲染，包含立體幾何方塊/球體/平面、相機視角控制、光影系統與 3D 碰撞檢測。',
         featured: true,
         disabled: false
     }

@@ -35,7 +35,8 @@ const builtinExtensions = {
     posenet2scratch: () => require('../extensions/scratch3_posenet2scratch'),
     gamepad: () => require('../extensions/scratch3_gamepad'),
     fetch: () => require('../extensions/scratch3_fetch'),
-    json: () => require('../extensions/scratch3_json')
+    json: () => require('../extensions/scratch3_json'),
+    three3d: () => require('../extensions/scratch3_three3d')
 };
 
 /**
