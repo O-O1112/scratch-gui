@@ -152,21 +152,31 @@ class ExtensionManager {
      * @returns {Promise} resolved once the extension is loaded and initialized or rejected on failure
      */
     loadExtensionURL (extensionURL) {
+        console.log('[DEBUG ExtensionManager.loadExtensionURL] extensionURL:', extensionURL, 'isBuiltin:', Object.prototype.hasOwnProperty.call(builtinExtensions, extensionURL));
         if (Object.prototype.hasOwnProperty.call(builtinExtensions, extensionURL)) {
             /** @TODO dupe handling for non-builtin extensions. See commit 670e51d33580e8a2e852b3b038bb3afc282f81b9 */
             if (this.isExtensionLoaded(extensionURL)) {
                 const message = `Rejecting attempt to load a second extension with ID ${extensionURL}`;
                 log.warn(message);
+                console.log('[DEBUG ExtensionManager.loadExtensionURL] already loaded:', extensionURL);
                 return Promise.resolve();
             }
 
-            const extension = builtinExtensions[extensionURL]();
-            const extensionInstance = new extension(this.runtime);
-            const serviceName = this._registerInternalExtension(extensionInstance);
-            this._loadedExtensions.set(extensionURL, serviceName);
-            return Promise.resolve();
+            try {
+                console.log('[DEBUG ExtensionManager.loadExtensionURL] instantiating extension:', extensionURL);
+                const extension = builtinExtensions[extensionURL]();
+                const extensionInstance = new extension(this.runtime);
+                const serviceName = this._registerInternalExtension(extensionInstance);
+                this._loadedExtensions.set(extensionURL, serviceName);
+                console.log('[DEBUG ExtensionManager.loadExtensionURL] successfully registered internal extension:', extensionURL, serviceName);
+                return Promise.resolve();
+            } catch (err) {
+                console.error('[DEBUG ExtensionManager.loadExtensionURL] error instantiating extension:', extensionURL, err);
+                return Promise.reject(err);
+            }
         }
 
+        console.log('[DEBUG ExtensionManager.loadExtensionURL] not builtin, trying worker...');
         return new Promise((resolve, reject) => {
             // If we `require` this at the global level it breaks non-webpack targets, including tests
             const worker = new Worker('./extension-worker.js');

@@ -164,7 +164,7 @@ export default [
         disabled: false
     },
     {
-        name: '自訂代碼與監聽 (Custom & Listeners)',
+        name: '自訂代碼與監聽 (Custom and Listeners)',
         extensionId: 'custom',
         collaborator: 'Community',
         iconURL: customIconURL,

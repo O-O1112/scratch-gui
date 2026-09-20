@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import VM from 'scratch-vm';
 import {defineMessages, injectIntl, intlShape} from 'react-intl';
+import log from '../lib/log.js';
 
 import extensionLibraryContent from '../lib/libraries/extensions/index.jsx';
 
@@ -42,6 +43,8 @@ class ExtensionLibrary extends React.PureComponent {
             } else {
                 this.props.vm.extensionManager.loadExtensionURL(url).then(() => {
                     this.props.onCategorySelected(id);
+                }).catch(err => {
+                    log.error(err);
                 });
             }
         }

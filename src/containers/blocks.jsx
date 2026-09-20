@@ -105,6 +105,7 @@ class Blocks extends React.Component {
             {rtl: this.props.isRtl, toolbox: this.props.toolboxXML, colours: getColorsForTheme(this.props.theme)}
         );
         this.workspace = this.ScratchBlocks.inject(this.blocks, workspaceConfig);
+        window.vm = this.props.vm;
 
         // Register buttons under new callback keys for creating variables,
         // lists, and procedures from extensions.
@@ -365,7 +366,8 @@ class Blocks extends React.Component {
                 targetSounds.length > 0 ? targetSounds[targetSounds.length - 1].name : '',
                 getColorsForTheme(this.props.theme)
             );
-        } catch {
+        } catch (e) {
+            log.error(e);
             return null;
         }
     }

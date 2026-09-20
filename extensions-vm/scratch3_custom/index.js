@@ -52,7 +52,7 @@ class Scratch3Custom {
     getInfo () {
         return {
             id: 'custom',
-            name: '自訂代碼與監聽 (Custom & Listeners)',
+            name: '自訂代碼與監聽 (Custom and Listeners)',
             color1: '#E09F3E',
             color2: '#C98522',
             color3: '#A3650C',

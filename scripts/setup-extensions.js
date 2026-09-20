@@ -44,4 +44,34 @@ fs.copyFileSync(
     path.join(vmDir, 'src', 'extension-support', 'extension-manager.js')
 );
 
+// Patch scratch-vm package.json so that browser / exports resolve to src/index.js
+const vmPkgPath = path.join(vmDir, 'package.json');
+if (fs.existsSync(vmPkgPath)) {
+    const pkg = JSON.parse(fs.readFileSync(vmPkgPath, 'utf8'));
+    pkg.main = './src/index.js';
+    pkg.browser = './src/index.js';
+    pkg.exports = {
+        webpack: './src/index.js',
+        browser: './src/index.js',
+        node: './src/index.js',
+        default: './src/index.js'
+    };
+    fs.writeFileSync(vmPkgPath, JSON.stringify(pkg, null, 2), 'utf8');
+    console.log('[setup-extensions] Patched scratch-vm package.json entry points to src/index.js');
+}
+
+// Patch runtime.js getBlocksXML to escape category names
+const runtimePath = path.join(vmDir, 'src', 'engine', 'runtime.js');
+if (fs.existsSync(runtimePath)) {
+    let runtimeCode = fs.readFileSync(runtimePath, 'utf8');
+    if (runtimeCode.includes('xml: `<category name="${name}"') && !runtimeCode.includes('escapedName')) {
+        runtimeCode = runtimeCode.replace(
+            'return {\n                id: categoryInfo.id,\n                xml: `<category name="${name}"',
+            'const escapedName = typeof name === "string" ? name.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;") : name;\n            return {\n                id: categoryInfo.id,\n                xml: `<category name="${escapedName}"'
+        );
+        fs.writeFileSync(runtimePath, runtimeCode, 'utf8');
+        console.log('[setup-extensions] Patched runtime.js to escape category names in getBlocksXML');
+    }
+}
+
 console.log('[setup-extensions] Done copying extensions to scratch-vm.');
