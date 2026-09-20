@@ -61,7 +61,26 @@ import webaudioInsetIconURL from './webaudio/webaudio-small.svg';
 import filesIconURL from './files/files.svg';
 import filesInsetIconURL from './files/files-small.svg';
 
+import githubLoaderIconURL from './github_loader/github_loader.svg';
+import githubLoaderInsetIconURL from './github_loader/github_loader-small.svg';
+
+import pointerLockIconURL from './pointerlock/pointerlock.svg';
+import pointerLockInsetIconURL from './pointerlock/pointerlock-small.svg';
+
+import animatedTextIconURL from './animatedtext/animatedtext.svg';
+import animatedTextInsetIconURL from './animatedtext/animatedtext-small.svg';
+
 export default [
+    {
+        name: '從 GitHub / 網址安裝自訂擴充',
+        extensionId: 'custom_github',
+        collaborator: 'GitHub / Community',
+        iconURL: githubLoaderIconURL,
+        insetIconURL: githubLoaderInsetIconURL,
+        description: '輸入任意 GitHub 專案、Raw 程式碼或 Gist 網址，自動解析並即時載入社群開源自訂積木模組。',
+        featured: true,
+        disabled: false
+    },
     {
         name: 'Handpose2Scratch',
         extensionId: 'handpose2scratch',
@@ -308,6 +327,26 @@ export default [
         iconURL: filesIconURL,
         insetIconURL: filesInsetIconURL,
         description: '支援系統剪貼簿文字讀取與複製、遊戲存檔 JSON/文字檔本機下載匯出，以及本機檔案選取匯入。',
+        featured: true,
+        disabled: false
+    },
+    {
+        name: '滑鼠指針鎖定 (Pointer Lock)',
+        extensionId: 'pointerlock',
+        collaborator: 'Pointer Lock API',
+        iconURL: pointerLockIconURL,
+        insetIconURL: pointerLockInsetIconURL,
+        description: '將滑鼠指針鎖定在舞台內，取得持續不中斷的 Delta X / Y 滑鼠移動量，適合 3D 與第一人稱視角遊戲。',
+        featured: true,
+        disabled: false
+    },
+    {
+        name: '動態文字與打字機 (Animated Text)',
+        extensionId: 'animatedtext',
+        collaborator: 'Scratch Team / TurboWarp',
+        iconURL: animatedTextIconURL,
+        insetIconURL: animatedTextInsetIconURL,
+        description: '在舞台上即時呈現動態文字排版，支援打字機逐字動畫、彩虹漸層色彩、震動與心跳呼吸特效。',
         featured: true,
         disabled: false
     }

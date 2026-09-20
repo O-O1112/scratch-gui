@@ -41,7 +41,9 @@ const builtinExtensions = {
     particles: () => require('../extensions/scratch3_particles'),
     multiplayer: () => require('../extensions/scratch3_multiplayer'),
     webaudio: () => require('../extensions/scratch3_webaudio'),
-    files: () => require('../extensions/scratch3_files')
+    files: () => require('../extensions/scratch3_files'),
+    pointerlock: () => require('../extensions/scratch3_pointerlock'),
+    animatedtext: () => require('../extensions/scratch3_animatedtext')
 };
 
 /**
@@ -115,6 +117,55 @@ class ExtensionManager {
         dispatch.setService('extensions', this).catch(e => {
             log.error(`ExtensionManager was unable to register extension service: ${JSON.stringify(e)}`);
         });
+
+        // Expose window.Scratch compatible API for unsandboxed / GitHub extensions
+        if (typeof window !== 'undefined') {
+            window.Scratch = window.Scratch || {};
+            window.Scratch.ArgumentType = require('./argument-type');
+            window.Scratch.BlockType = BlockType;
+            window.Scratch.TargetType = require('./target-type');
+            window.Scratch.Cast = require('../util/cast');
+            window.Scratch.vm = this.runtime;
+            window.Scratch.renderer = this.runtime.renderer;
+            window.Scratch.extensions = {
+                unsandboxed: true,
+                register: (extensionInstance) => {
+                    const serviceName = this._registerInternalExtension(extensionInstance);
+                    const id = (extensionInstance.getInfo && extensionInstance.getInfo().id) || `ext_${Date.now()}`;
+                    this._loadedExtensions.set(id, serviceName);
+                    return Promise.resolve(serviceName);
+                }
+            };
+        }
+    }
+
+    _resolveGitHubURL (url) {
+        let cleanUrl = String(url).trim();
+        // 1. GitHub blob URL -> jsDelivr CDN
+        const blobRegex = /^https?:\/\/github\.com\/([^/]+)\/([^/]+)\/blob\/([^/]+)\/(.+)$/;
+        const blobMatch = cleanUrl.match(blobRegex);
+        if (blobMatch) {
+            const [, owner, repo, branch, filePath] = blobMatch;
+            return `https://cdn.jsdelivr.net/gh/${owner}/${repo}@${branch}/${filePath}`;
+        }
+
+        // 2. GitHub raw URL -> jsDelivr CDN
+        const rawRegex = /^https?:\/\/raw\.githubusercontent\.com\/([^/]+)\/([^/]+)\/([^/]+)\/(.+)$/;
+        const rawMatch = cleanUrl.match(rawRegex);
+        if (rawMatch) {
+            const [, owner, repo, branch, filePath] = rawMatch;
+            return `https://cdn.jsdelivr.net/gh/${owner}/${repo}@${branch}/${filePath}`;
+        }
+
+        // 3. GitHub Gist URL -> Gist raw
+        const gistRegex = /^https?:\/\/gist\.github\.com\/([^/]+)\/([a-f0-9]+)(?:\/.*)?$/;
+        const gistMatch = cleanUrl.match(gistRegex);
+        if (gistMatch) {
+            const [, owner, gistId] = gistMatch;
+            return `https://gist.githubusercontent.com/${owner}/${gistId}/raw`;
+        }
+
+        return cleanUrl;
     }
 
     /**
@@ -182,7 +233,56 @@ class ExtensionManager {
             }
         }
 
-        console.log('[DEBUG ExtensionManager.loadExtensionURL] not builtin, trying worker...');
+        // Dynamic GitHub / HTTP(S) URL loader
+        if (typeof extensionURL === 'string' && (
+            extensionURL.startsWith('http://') ||
+            extensionURL.startsWith('https://') ||
+            extensionURL.startsWith('data:') ||
+            extensionURL.startsWith('blob:')
+        )) {
+            const resolvedURL = this._resolveGitHubURL(extensionURL);
+            console.log('[DEBUG ExtensionManager.loadExtensionURL] Loading dynamic extension from URL:', resolvedURL);
+
+            return new Promise((resolve, reject) => {
+                fetch(resolvedURL)
+                    .then(res => {
+                        if (!res.ok) {
+                            throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+                        }
+                        return res.text();
+                    })
+                    .then(code => {
+                        try {
+                            const fn = new Function('Scratch', 'window', 'document', code);
+                            fn(window.Scratch, window, document);
+                            setTimeout(() => {
+                                resolve();
+                            }, 150);
+                        } catch (evalErr) {
+                            console.error('[ExtensionManager] Error evaluating dynamic extension:', evalErr);
+                            reject(evalErr);
+                        }
+                    })
+                    .catch(fetchErr => {
+                        console.warn('[ExtensionManager] Fetch failed, falling back to script tag:', fetchErr);
+                        if (typeof document !== 'undefined') {
+                            const script = document.createElement('script');
+                            script.src = resolvedURL;
+                            script.onload = () => {
+                                setTimeout(() => resolve(), 150);
+                            };
+                            script.onerror = () => {
+                                reject(new Error(`無法自 GitHub / 網址載入擴充: ${resolvedURL}`));
+                            };
+                            document.head.appendChild(script);
+                        } else {
+                            reject(fetchErr);
+                        }
+                    });
+            });
+        }
+
+        console.log('[DEBUG ExtensionManager.loadExtensionURL] not builtin or url, trying worker...');
         return new Promise((resolve, reject) => {
             // If we `require` this at the global level it breaks non-webpack targets, including tests
             const worker = new Worker('./extension-worker.js');
@@ -298,8 +398,11 @@ class ExtensionManager {
      */
     _prepareExtensionInfo (serviceName, extensionInfo) {
         extensionInfo = Object.assign({}, extensionInfo);
-        if (!/^[a-z0-9]+$/i.test(extensionInfo.id)) {
-            throw new Error('Invalid extension id');
+        if (typeof extensionInfo.id === 'string') {
+            extensionInfo.id = extensionInfo.id.replace(/[^a-z0-9]/gi, '');
+        }
+        if (!extensionInfo.id || !/^[a-z0-9]+$/i.test(extensionInfo.id)) {
+            extensionInfo.id = 'ext' + Math.random().toString(36).substring(2, 8);
         }
         extensionInfo.name = extensionInfo.name || extensionInfo.id;
         extensionInfo.blocks = extensionInfo.blocks || [];

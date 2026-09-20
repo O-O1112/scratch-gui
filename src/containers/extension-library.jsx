@@ -32,6 +32,28 @@ class ExtensionLibrary extends React.PureComponent {
     }
     handleItemSelect (item) {
         const id = item.extensionId;
+        if (id === 'custom_github') {
+            // eslint-disable-next-line no-alert
+            const inputUrl = prompt(
+                '請輸入 GitHub 擴充模組網址 (支援 github.com/.../blob/ 或 raw.githubusercontent.com 或 Gist):\n\n範例：https://raw.githubusercontent.com/.../extension.js',
+                'https://'
+            );
+            if (!inputUrl || inputUrl.trim() === '' || inputUrl.trim() === 'https://') {
+                return;
+            }
+            const trimmedUrl = inputUrl.trim();
+            this.props.vm.extensionManager.loadExtensionURL(trimmedUrl).then(() => {
+                if (this.props.onRequestClose) {
+                    this.props.onRequestClose();
+                }
+            }).catch(err => {
+                log.error(err);
+                // eslint-disable-next-line no-alert
+                alert(`載入擴充失敗: ${err.message || err}`);
+            });
+            return;
+        }
+
         let url = item.extensionURL ? item.extensionURL : id;
         if (!item.disabled && !id) {
             // eslint-disable-next-line no-alert

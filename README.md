@@ -2,16 +2,22 @@
 
 > 🌐 **線上體驗網址**：[https://o-o1112.github.io/scratch-gui/](https://o-o1112.github.io/scratch-gui/)
 
-本專案已整合以下 AI 擴充模組，並精簡擴充庫僅保留指定核心項目：
+本專案已整合強大之擴充生態系、3D 引擎與自訂擴充動態安裝器：
+- 🚀 **從 GitHub / 網址安裝自訂擴充 (Custom GitHub Loader)**：於擴充庫置頂提供動態安裝卡片，輸入任意 GitHub、Raw、Gist 或 jsDelivr 網址即可自動解析 CORS 並在主執行緒即時註冊社群自訂積木（相容 `Scratch.extensions.register`）。
+- **Pointer Lock (滑鼠指針鎖定)**：社群熱門第一人稱 3D 遊戲/射擊必備擴充，支援舞台滑鼠游標鎖定、Delta X/Y 靈敏度取得與移動累積量重設。
+- **Animated Text (動態文字)**：畫布動態文字渲染、打字機打字效果、字型/彩虹顏色與彩虹循環特效。
+- **Three3D (3D 空間維度)**：基於 Three.js 打造之專業 3D 空間遊戲積木，支援 3D 場景建立、方塊/球體幾何網格、自轉/移動與 3D 攝影機位置縮放控制。
 - **Handpose2Scratch**（手部辨識）：即時追蹤手部 21 個關節點座標與手勢狀態。來源：[champierre/handpose2scratch](https://github.com/champierre/handpose2scratch)
 - **Facemesh2Scratch**（臉部辨識）：即時估算臉部 468 個特徵點位置與多張臉孔。來源：[champierre/facemesh2scratch](https://github.com/champierre/facemesh2scratch)
 - **PoseNet2Scratch**（身體姿態辨識）：即時追蹤全身 17 個骨架關節點座標。來源：[champierre/posenet2scratch](https://github.com/champierre/posenet2scratch)
 - **ML2Scratch**（機器學習辨識）：透過 Web 攝影機訓練與即時圖片/動作分類。來源：[champierre/ml2scratch](https://github.com/champierre/ml2scratch)
 - **音樂 (Music)** 與 **畫筆 (Pen)**：官方經典繪圖與音樂核心積木。
-- **控制台 (Console)**：瀏覽器開發者控制台輸出、除錯日誌（log/warn/error/info）、計時器與計數器。
-- **自訂代碼 (Custom JS)**：支援執行自訂 JavaScript 代碼、表達式求值（Reporter）與全域變數存取。
-- **自訂游標 (Cursor)**：設定舞台滑鼠游標為指針、文字、十字、隱藏或自訂圖片網址。
-- **本地儲存 (Storage)**：基於 `localStorage` 之跨頁面、離線資料持久化存檔。
+- **自訂積木 5 合 1 工具箱**：
+  - **控制台 (Console)**：瀏覽器開發者控制台輸出、除錯日誌（log/warn/error/info）、計時器與計數器。
+  - **自訂代碼 (Custom JS)**：支援執行自訂 JavaScript 代碼、表達式求值（Reporter）與全域變數存取。
+  - **自訂游標 (Cursor)**：設定舞台滑鼠游標為指針、文字、十字、隱藏或自訂圖片網址。
+  - **本地儲存 (Storage)**：基於 `localStorage` 之跨頁面、離線資料持久化存檔。
+  - **鍵盤監聽擴展**：全按鍵狀態監聽與組合鍵支援。
 - **Block Plus 引擎 (Block Plus)**：植入完整的多語言編程語言與直譯引擎，支援 Native Block 控制流語法（`func...block`, `for...block`, `if...block`）與 `<js>`、`<py>` (Python)、`<sql>` (SQLite)、`<json>`、`<html>`、`<del>` 跨語言狀態管線，並內建 Scratch 舞台精靈雙向橋接控制。
 - **全域深色模式 (Dark Mode)**：提供舒適護眼的深色主題（包含積木工作區、選單列、舞台周邊與角色資訊欄），支援選單切換與頂端導覽列一鍵切換（☀️/🌙）。
 - **舞台即時 FPS 計數器**：位於控制列右側，即時監控畫面與模型運算幀率。

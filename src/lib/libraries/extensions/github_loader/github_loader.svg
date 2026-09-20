@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 372" width="600" height="372">
+  <defs>
+    <linearGradient id="bgGithub" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="50%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="gitGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#60A5FA"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="372" rx="16" fill="url(#bgGithub)"/>
+
+  <!-- GitHub Mark Icon (Vector) -->
+  <g transform="translate(390, 180) scale(1.6)">
+    <!-- GitHub Invertocat -->
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 -50C-27.6 -50 -50 -27.6 -50 0C-50 22.1 -35.7 40.8 -15.8 47.4C-13.3 47.9 -12.4 46.3 -12.4 45C-12.4 43.8 -12.4 39.7 -12.4 35.5C-26.3 38.5 -29.2 29.8 -29.2 29.8C-31.5 24 -34.8 22.4 -34.8 22.4C-39.4 19.3 -34.5 19.4 -34.5 19.4C-29.4 19.7 -26.7 24.6 -26.7 24.6C-22.2 32.3 -14.9 30.1 -12 28.8C-11.5 25.5 -10.2 23.3 -8.8 22C-19.9 20.8 -31.5 16.5 -31.5 -2.7C-31.5 -8.2 -29.6 -12.6 -26.3 -16.1C-26.8 -17.4 -28.6 -22.5 -25.8 -29.3C-25.8 -29.3 -21.6 -30.6 -12.1 -24.2C-8.1 -25.3 -3.9 -25.9 0.2 -25.9C4.3 -25.9 8.5 -25.3 12.5 -24.2C22 -30.6 26.2 -29.3 26.2 -29.3C29 -22.5 27.2 -17.4 26.7 -16.1C30 -12.6 31.9 -8.2 31.9 -2.7C31.9 16.5 20.3 20.7 9.1 22C10.8 23.5 12.3 26.5 12.3 31.1C12.3 37.7 12.2 43.1 12.2 44.8C12.2 46.1 13.1 47.7 15.6 47.2C35.6 40.6 49.8 21.9 49.8 0C49.8 -27.6 27.5 -50 0 -50Z" fill="#F8FAFC"/>
+  </g>
+
+  <!-- Code Bracket & Download Ray -->
+  <g transform="translate(180, 210)">
+    <!-- Terminal window mockup -->
+    <rect x="-110" y="-70" width="220" height="130" rx="10" fill="#0F172A" stroke="#38BDF8" stroke-width="2"/>
+    <circle cx="-90" cy="-55" r="4" fill="#EF4444"/>
+    <circle cx="-76" cy="-55" r="4" fill="#F59E0B"/>
+    <circle cx="-62" cy="-55" r="4" fill="#10B981"/>
+    <!-- Terminal text -->
+    <text x="-95" y="-20" fill="#38BDF8" font-family="monospace" font-size="13" font-weight="bold">$ git clone extension</text>
+    <text x="-95" y="5" fill="#4ADE80" font-family="monospace" font-size="13">&gt; fetch raw.github...</text>
+    <text x="-95" y="30" fill="#FDE047" font-family="monospace" font-size="13">✓ blocks loaded!</text>
+  </g>
+
+  <text x="50" y="70" fill="#F8FAFC" font-family="sans-serif" font-size="30" font-weight="900" letter-spacing="1">從 GitHub / 網址安裝</text>
+  <text x="50" y="100" fill="#60A5FA" font-family="sans-serif" font-size="16" font-weight="bold">Install Custom Extension from GitHub</text>
+</svg>

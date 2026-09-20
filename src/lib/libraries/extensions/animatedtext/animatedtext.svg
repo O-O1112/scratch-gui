@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 372" width="600" height="372">
+  <defs>
+    <linearGradient id="bgText" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B0764"/>
+      <stop offset="50%" stop-color="#581C87"/>
+      <stop offset="100%" stop-color="#1E0A3C"/>
+    </linearGradient>
+    <linearGradient id="rainbowText" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F43F5E"/>
+      <stop offset="25%" stop-color="#FBBF24"/>
+      <stop offset="50%" stop-color="#34D399"/>
+      <stop offset="75%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#A855F7"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="372" rx="16" fill="url(#bgText)"/>
+
+  <!-- Large Animated Lettering -->
+  <g transform="translate(300, 210)">
+    <text x="-160" y="20" fill="url(#rainbowText)" font-family="sans-serif" font-size="72" font-weight="900" letter-spacing="4">TEXT</text>
+    <!-- Blinking cursor -->
+    <rect x="70" y="-45" width="8" height="75" rx="3" fill="#38BDF8"/>
+  </g>
+
+  <!-- Floating ABC characters -->
+  <g fill="#DDD6FE" opacity="0.4" font-family="sans-serif" font-weight="bold">
+    <text x="120" y="150" font-size="28">A</text>
+    <text x="460" y="140" font-size="34">B</text>
+    <text x="490" y="270" font-size="26">C</text>
+    <text x="90" y="270" font-size="30">字</text>
+  </g>
+
+  <text x="50" y="70" fill="#FAF5FF" font-family="sans-serif" font-size="30" font-weight="900" letter-spacing="1">動態文字與打字機</text>
+  <text x="50" y="100" fill="#C084FC" font-family="sans-serif" font-size="16" font-weight="bold">Animated Text &amp; Typewriter FX</text>
+</svg>
