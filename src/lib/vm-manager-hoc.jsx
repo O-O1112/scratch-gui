@@ -55,6 +55,16 @@ const vmManagerHOC = function (WrappedComponent) {
             return this.props.vm.loadProject(this.props.projectData)
                 .then(() => {
                     this.props.onLoadedProject(this.props.loadingState, this.props.canSave);
+                    if (this.props.vm && this.props.vm.extensionManager) {
+                        const preloads = ['custom', 'blocklang'];
+                        preloads.forEach(extId => {
+                            if (!this.props.vm.extensionManager.isExtensionLoaded(extId)) {
+                                this.props.vm.extensionManager.loadExtensionURL(extId).catch(err => {
+                                    console.warn('[Preload] Failed to preload extension ' + extId, err);
+                                });
+                            }
+                        });
+                    }
                     // Wrap in a setTimeout because skin loading in
                     // the renderer can be async.
                     setTimeout(() => this.props.onSetProjectUnchanged());
