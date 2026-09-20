@@ -36,7 +36,12 @@ const builtinExtensions = {
     gamepad: () => require('../extensions/scratch3_gamepad'),
     fetch: () => require('../extensions/scratch3_fetch'),
     json: () => require('../extensions/scratch3_json'),
-    three3d: () => require('../extensions/scratch3_three3d')
+    three3d: () => require('../extensions/scratch3_three3d'),
+    physics: () => require('../extensions/scratch3_physics'),
+    particles: () => require('../extensions/scratch3_particles'),
+    multiplayer: () => require('../extensions/scratch3_multiplayer'),
+    webaudio: () => require('../extensions/scratch3_webaudio'),
+    files: () => require('../extensions/scratch3_files')
 };
 
 /**

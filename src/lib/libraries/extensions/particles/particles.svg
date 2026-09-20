@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 372" width="600" height="372">
+  <defs>
+    <linearGradient id="bgParticles" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4A044E"/>
+      <stop offset="50%" stop-color="#701A75"/>
+      <stop offset="100%" stop-color="#18021A"/>
+    </linearGradient>
+    <radialGradient id="sparkGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FDF4FF" stop-opacity="1"/>
+      <stop offset="40%" stop-color="#F472B6" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#DB2777" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="372" rx="16" fill="url(#bgParticles)"/>
+
+  <!-- Particles Stream -->
+  <g opacity="0.9">
+    <!-- Starbursts -->
+    <circle cx="380" cy="180" r="45" fill="url(#sparkGlow)"/>
+    <circle cx="280" cy="240" r="30" fill="url(#sparkGlow)"/>
+    <circle cx="460" cy="130" r="25" fill="url(#sparkGlow)"/>
+    <circle cx="340" cy="270" r="20" fill="url(#sparkGlow)"/>
+
+    <!-- Sparks -->
+    <polygon points="380,140 384,175 420,180 384,185 380,220 376,185 340,180 376,175" fill="#FFFFFF"/>
+    <polygon points="280,215 283,237 305,240 283,243 280,265 277,243 255,240 277,237" fill="#FDE047"/>
+    <polygon points="460,115 462,128 475,130 462,132 460,145 458,132 445,130 458,128" fill="#67E8F9"/>
+
+    <!-- Small floating embers -->
+    <circle cx="210" cy="270" r="5" fill="#F43F5E"/>
+    <circle cx="230" cy="220" r="3" fill="#FBBF24"/>
+    <circle cx="310" cy="140" r="6" fill="#A855F7"/>
+    <circle cx="340" cy="110" r="4" fill="#38BDF8"/>
+    <circle cx="430" cy="240" r="7" fill="#FB7185"/>
+    <circle cx="500" cy="200" r="5" fill="#F472B6"/>
+    <circle cx="490" cy="90" r="3" fill="#FDE047"/>
+    <circle cx="160" cy="280" r="8" fill="#EC4899" opacity="0.6"/>
+  </g>
+
+  <text x="50" y="75" fill="#FDF4FF" font-family="sans-serif" font-size="32" font-weight="900" letter-spacing="1">粒子特效與濾鏡</text>
+  <text x="50" y="105" fill="#F472B6" font-family="sans-serif" font-size="16" font-weight="bold">Particles and Visual FX Engine</text>
+</svg>

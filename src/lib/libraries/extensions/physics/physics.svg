@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 372" width="600" height="372">
+  <defs>
+    <linearGradient id="bgPhysics" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#451A03"/>
+      <stop offset="50%" stop-color="#78350F"/>
+      <stop offset="100%" stop-color="#1C1917"/>
+    </linearGradient>
+    <linearGradient id="ballGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDE68A"/>
+      <stop offset="50%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#B45309"/>
+    </linearGradient>
+    <linearGradient id="boxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FB923C"/>
+      <stop offset="100%" stop-color="#EA580C"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="372" rx="16" fill="url(#bgPhysics)"/>
+
+  <!-- Ground slope -->
+  <path d="M 40,290 L 320,320 L 560,260 L 560,340 L 40,340 Z" fill="#292524" stroke="#D97706" stroke-width="3"/>
+
+  <!-- Parabolic Trajectory -->
+  <path d="M 120,270 Q 220,100 340,220 Q 420,130 480,260" fill="none" stroke="#FBBF24" stroke-width="3" stroke-dasharray="8,6" opacity="0.7"/>
+
+  <!-- Rolling / Falling Box -->
+  <g transform="translate(190, 160) rotate(25)">
+    <rect x="-35" y="-35" width="70" height="70" rx="8" fill="url(#boxGrad)" stroke="#FED7AA" stroke-width="2"/>
+    <line x1="-20" y1="0" x2="20" y2="0" stroke="#FFFFFF" stroke-width="3" opacity="0.6"/>
+    <line x1="0" y1="-20" x2="0" y2="20" stroke="#FFFFFF" stroke-width="3" opacity="0.6"/>
+  </g>
+
+  <!-- Bouncing Ball -->
+  <circle cx="340" cy="220" r="32" fill="url(#ballGrad)" stroke="#FFFBEB" stroke-width="2.5"/>
+  <ellipse cx="330" cy="210" rx="10" ry="6" fill="#FFFFFF" opacity="0.5"/>
+
+  <!-- Gravity Arrow -->
+  <g transform="translate(520, 80)" stroke="#F59E0B" stroke-width="3" fill="none">
+    <line x1="0" y1="0" x2="0" y2="50"/>
+    <polygon points="-8,40 0,55 8,40" fill="#F59E0B"/>
+    <text x="-25" y="-10" fill="#F59E0B" font-family="sans-serif" font-size="14" font-weight="bold" stroke="none">g=9.8</text>
+  </g>
+
+  <text x="50" y="75" fill="#FEF3C7" font-family="sans-serif" font-size="32" font-weight="900" letter-spacing="1">2D 物理引擎</text>
+  <text x="50" y="105" fill="#FBBF24" font-family="sans-serif" font-size="16" font-weight="bold">Matter.js Rigid Body Physics</text>
+</svg>

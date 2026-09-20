@@ -46,6 +46,21 @@ import jsonInsetIconURL from './json/json-small.svg';
 import three3dIconURL from './three3d/three3d.svg';
 import three3dInsetIconURL from './three3d/three3d-small.svg';
 
+import physicsIconURL from './physics/physics.svg';
+import physicsInsetIconURL from './physics/physics-small.svg';
+
+import particlesIconURL from './particles/particles.svg';
+import particlesInsetIconURL from './particles/particles-small.svg';
+
+import multiplayerIconURL from './multiplayer/multiplayer.svg';
+import multiplayerInsetIconURL from './multiplayer/multiplayer-small.svg';
+
+import webaudioIconURL from './webaudio/webaudio.svg';
+import webaudioInsetIconURL from './webaudio/webaudio-small.svg';
+
+import filesIconURL from './files/files.svg';
+import filesInsetIconURL from './files/files-small.svg';
+
 export default [
     {
         name: 'Handpose2Scratch',
@@ -243,6 +258,56 @@ export default [
         iconURL: three3dIconURL,
         insetIconURL: three3dInsetIconURL,
         description: '支援 60 FPS 硬體加速 WebGL 3D 渲染，包含立體幾何方塊/球體/平面、相機視角控制、光影系統與 3D 碰撞檢測。',
+        featured: true,
+        disabled: false
+    },
+    {
+        name: '2D 物理引擎 (Physics 2D)',
+        extensionId: 'physics',
+        collaborator: 'Matter.js / Community',
+        iconURL: physicsIconURL,
+        insetIconURL: physicsInsetIconURL,
+        description: '支援 2D 剛體碰撞、重力、摩擦力、反彈彈性、推力與衝量模擬，快速製作物理模擬與拋物彈珠遊戲。',
+        featured: true,
+        disabled: false
+    },
+    {
+        name: '粒子特效與濾鏡 (Particles and FX)',
+        extensionId: 'particles',
+        collaborator: 'Canvas 2D / Visual FX',
+        iconURL: particlesIconURL,
+        insetIconURL: particlesInsetIconURL,
+        description: '支援火焰、煙霧、爆炸、落雪、火花等動態粒子系統，支援角色綁定發射與發光混合 (Lighter) 模式。',
+        featured: true,
+        disabled: false
+    },
+    {
+        name: '多人即時連線 (Multiplayer)',
+        extensionId: 'multiplayer',
+        collaborator: 'WebSocket / Network',
+        iconURL: multiplayerIconURL,
+        insetIconURL: multiplayerInsetIconURL,
+        description: '使用 WebSocket 實現多人即時房間對戰、全服訊息廣播、私人密語與雲端共享變數自動同步。',
+        featured: true,
+        disabled: false
+    },
+    {
+        name: '進階音訊合成 (Web Audio and Synth)',
+        extensionId: 'webaudio',
+        collaborator: 'Web Audio API',
+        iconURL: webaudioIconURL,
+        insetIconURL: webaudioInsetIconURL,
+        description: '8-Bit 方塊波復古晶片音效合成、打擊噪聲、ADSR 包絡、高低通濾波器與即時低音頻譜分析。',
+        featured: true,
+        disabled: false
+    },
+    {
+        name: '檔案與剪貼簿 (Files and Clipboard)',
+        extensionId: 'files',
+        collaborator: 'HTML5 File & Clipboard API',
+        iconURL: filesIconURL,
+        insetIconURL: filesInsetIconURL,
+        description: '支援系統剪貼簿文字讀取與複製、遊戲存檔 JSON/文字檔本機下載匯出，以及本機檔案選取匯入。',
         featured: true,
         disabled: false
     }

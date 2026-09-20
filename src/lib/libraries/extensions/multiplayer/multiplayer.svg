@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 372" width="600" height="372">
+  <defs>
+    <linearGradient id="bgMulti" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E1B4B"/>
+      <stop offset="50%" stop-color="#312E81"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="nodeGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#818CF8"/>
+      <stop offset="100%" stop-color="#4F46E5"/>
+    </linearGradient>
+    <linearGradient id="nodeGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#0284C7"/>
+    </linearGradient>
+    <linearGradient id="nodeGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34D399"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="372" rx="16" fill="url(#bgMulti)"/>
+
+  <!-- Network lines -->
+  <g stroke="#6366F1" stroke-width="2.5" stroke-dasharray="6,4" opacity="0.6">
+    <line x1="300" y1="210" x2="180" y2="280"/>
+    <line x1="300" y1="210" x2="420" y2="280"/>
+    <line x1="300" y1="210" x2="300" y2="120"/>
+    <line x1="180" y1="280" x2="420" y2="280"/>
+  </g>
+
+  <!-- Central Hub / Server -->
+  <circle cx="300" cy="210" r="32" fill="url(#nodeGrad1)" stroke="#C7D2FE" stroke-width="3"/>
+  <!-- Central pulse rings -->
+  <circle cx="300" cy="210" r="48" fill="none" stroke="#818CF8" stroke-width="1.5" opacity="0.4"/>
+  <circle cx="300" cy="210" r="64" fill="none" stroke="#818CF8" stroke-width="1" opacity="0.2"/>
+
+  <!-- Player 1 -->
+  <circle cx="180" cy="280" r="24" fill="url(#nodeGrad2)" stroke="#E0F2FE" stroke-width="2.5"/>
+  <text x="180" y="286" fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">P1</text>
+
+  <!-- Player 2 -->
+  <circle cx="420" cy="280" r="24" fill="url(#nodeGrad3)" stroke="#D1FAE5" stroke-width="2.5"/>
+  <text x="420" y="286" fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">P2</text>
+
+  <!-- Player 3 -->
+  <circle cx="300" cy="120" r="22" fill="#F43F5E" stroke="#FFE4E6" stroke-width="2.5"/>
+  <text x="300" y="126" fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">P3</text>
+
+  <text x="50" y="75" fill="#EEF2FF" font-family="sans-serif" font-size="32" font-weight="900" letter-spacing="1">多人即時連線</text>
+  <text x="50" y="105" fill="#A5B4FC" font-family="sans-serif" font-size="16" font-weight="bold">WebSocket Real-Time Networking</text>
+</svg>
